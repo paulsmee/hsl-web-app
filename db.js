@@ -26,5 +26,18 @@ db.get('SELECT * FROM milk WHERE date order by date desc limit 1', function(err,
     tempstats.lastAmountLeft = row.left;
 
 })
+
+db.get('SELECT * FROM milk WHERE date order by date desc limit 1', function(err, row) {
+    if (err) {
+        console.log('Oh no!' + err.message);
+        return;
+    }
+
+    console.log(row)
+
+    console.log("The last expressed volume from the right breast was: " + row.right + "ml")
+    tempstats.lastAmountRight = row.right;
+
+})
 module.exports = tempstats
     // module.exports = db

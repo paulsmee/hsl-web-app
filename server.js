@@ -28,15 +28,19 @@ app.post('/', function(request, response) {
             console.log("There's another error!" + err.message);
         } else {
             console.log('Record successfully added with id: ' + this.lastID);
-            response.sendFile(__dirname + "/public/ndex.html");
+            response.sendFile(__dirname + "/public/index.html");
         }
     });
 });
 
 // SQL data interaction functions from db.js
-app.get('/view', function(req, res) {
+app.get('/left', function(req, res) {
     res.send(tempstats.lastAmountLeft + '')
     console.log(tempstats.lastAmountLeft + '')
+})
+app.get('/right', function(req, res) {
+    res.send(tempstats.lastAmountRight + '')
+    console.log(tempstats.lastAmountRight + '')
 })
 
 app.get('/selectedTemp', function(req, res) {

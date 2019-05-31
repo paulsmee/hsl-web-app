@@ -7,21 +7,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/css/style.css">
     <script src='/js/jquery.min.3.4.js'></script>
+
+    <link rel="apple-touch-icon" href="touch-icon-iphone.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="touch-icon-ipad.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="touch-icon-iphone-retina.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="touch-icon-ipad-retina.png">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- <link href="/apple_splash_2048.png" sizes="2048x2732" rel="apple-touch-startup-image" />
+    <link href="/apple_splash_1668.png" sizes="1668x2224" rel="apple-touch-startup-image" />
+    <link href="/apple_splash_1536.png" sizes="1536x2048" rel="apple-touch-startup-image" />
+    <link href="/apple_splash_1125.png" sizes="1125x2436" rel="apple-touch-startup-image" />
+    <link href="/apple_splash_1242.png" sizes="1242x2208" rel="apple-touch-startup-image" /> -->
+    <link href="/images/apple_splash_750.png" sizes="750x1334" rel="apple-touch-startup-image" />
+    <link href="/images/apple_splash_640.png" sizes="640x1136" rel="apple-touch-startup-image" />
 </head>
 
 <body>
-    <div class="column">
-        <div class="column side">
-            <form id="expressed" method="post" action="/" style="">
-                <input type="text" name="user[leftBoob]" placeholder="Left Boob">
-        </div>
-        <div class="column side">
-            <input type="text" name="user[rightBoob]" placeholder="Right Boob">
-        </div>
+    <script>
+        // Detects if device is on iOS 
+        const isIos = () => {
+                const userAgent = window.navigator.userAgent.toLowerCase();
+                return /iphone|ipad|ipod/.test(userAgent);
+            }
+            // Detects if device is in standalone mode
+        const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
+
+        // Checks if should display install popup notification:
+        if (isIos() && !isInStandaloneMode()) {
+            this.setState({
+                showInstallMessage: true
+            });
+        }
+    </script>
+
+    <div id="header">
+        <h1>HSL Express Studies</h1>
     </div>
-    <br>
-    <input type="submit" value="Submit">
-    <input type="reset" value="Clear">
+    <form id="expressed" method="post" action="/" style="">
+        <label for="sideboob">Left Breast</label>
+        <input type="text" name="user[leftBoob]" placeholder="ml">
+        <label for="sideboob">Right Breast</label>
+        <input type="text" name="user[rightBoob]" placeholder="ml">
+
+        <input type="submit" value="Submit">
+        <input type="reset" value="Clear">
     </form>
     <!-- <form method="post" action="/view">
         <input type="number" name="rowID[row]">
@@ -29,16 +58,33 @@
     </form> -->
     <!-- Show Temps from DB -->
     <br>
-    <div>
-        <p id="p1">Test</p>
+    <div id="lastValue">
+        <p id=heading>Last Amount Expressed</p>
+        <p id="p1left">Left Breast</p>
+        <p id="p2right">Right Breast</p>
+        <br>
+        <p id="p1">Left</p>
+        <p id="p2">Right</p>
     </div>
 
     <script>
-        window.getTempFromDatabase = function() {
-            $.get('/view')
-                .done(function(value2) {
-                    console.log(value2)
-                    document.getElementById("p1").innerHTML = "The current temperature in your house is: " + value2 + '' + "c";
+        window.getLeftFromDatabase = function() {
+            $.get('/left')
+                .done(function(leftvalue) {
+                    console.log(leftvalue)
+                    document.getElementById("p1").innerHTML = leftvalue + '' + "ml";
+                })
+                .catch(function(err) {
+                    console.log('uh oh')
+                });
+        }
+    </script>
+    <script>
+        window.getRightFromDatabase = function() {
+            $.get('/right')
+                .done(function(rightvalue) {
+                    console.log(rightvalue)
+                    document.getElementById("p2").innerHTML = rightvalue + '' + "ml";
                 })
                 .catch(function(err) {
                     console.log('uh oh')
@@ -47,9 +93,18 @@
     </script>
     <br>
     <script>
-        getTempFromDatabase();
-        setInterval(getTempFromDatabase, 6000)
+        getLeftFromDatabase();
+        getRightFromDatabase();
+        // setInterval(getTempFromDatabase, 6000)
     </script>
+
+    <div class="navbar" id="myNavbar">
+        <a href="#home">Back</a>
+        <a href="#news">News</a>
+        <a href="#contact">Contact</a>
+        <a href="#about">About</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+    </div>
 </body>
 
 </html>
