@@ -47,6 +47,7 @@ app.get('/selectedTemp', function(req, res) {
     res.send(tempstats.selectedTemp + '')
 })
 
+
 // Json testing sendfile is different to sendFile
 app.get('/json', function(req, res) {
     res.sendfile('./test.json', {})
