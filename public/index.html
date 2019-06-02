@@ -43,15 +43,25 @@
     <div id="header">
         <h1>HSL Express Studies</h1>
     </div>
-    <form id="expressed" method="post" action="/" style="">
+    <form id="expressed" name="form" method="post" action="/" style="">
         <label for="sideboob">Left Breast</label>
-        <input type="text" name="user[leftBoob]" placeholder="ml">
+        <input autocomplete="off" type="text" name="user[leftBreast]" placeholder="ml">
         <label for="sideboob">Right Breast</label>
-        <input type="text" name="user[rightBoob]" placeholder="ml">
+        <input autocomplete="off" type="text" name="user[rightBreast]" placeholder="ml">
 
-        <input type="submit" value="Submit">
+        <input type="button" onclick="validate()" value="Submit">
         <input type="reset" value="Clear">
     </form>
+    <script>
+        function validate() {
+            if (document.getElementsByName("user[leftBreast]")[0].value == "" || document.getElementsByName("user[rightBreast]")[0].value == "") {
+                alert("Please complete both fields");
+            } else {
+                var form = document.getElementsByName("form")[0];
+                form.submit();
+            }
+        }
+    </script>
     <!-- <form method="post" action="/view">
         <input type="number" name="rowID[row]">
         <input type="submit" value="Submit">
@@ -100,7 +110,7 @@
     </script>
 
     <div class="navbar" id="myNavbar">
-        <a href="#home">Back</a>
+        <!-- <button onclick="window.location.reload();">Refresh</button> -->
         <a href="#news">News</a>
         <a href="#contact">Contact</a>
         <a href="#about">About</a>

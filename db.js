@@ -22,33 +22,36 @@ db.each('SELECT * FROM milk WHERE rowid = 3', function(err, row) {
     }
 })
 
-db.get('SELECT * FROM milk WHERE date order by date desc limit 1', function(err, row) {
-    if (err) {
-        console.log('Oh no!' + err.message);
-        return;
-    }
+setInterval(function() {
+    db.get('SELECT * FROM milk WHERE date order by date desc limit 1', function(err, row) {
+        if (err) {
+            console.log('Oh no!' + err.message);
+            return;
+        }
 
-    console.log(row)
+        console.log(row)
 
-    console.log("The last expressed volume from the left breast was: " + row.left + "ml")
-    tempstats.lastAmountLeft = row.left;
-
-
-})
-
-db.get('SELECT * FROM milk WHERE date order by date desc limit 1', function(err, row) {
-    if (err) {
-        console.log('Oh no!' + err.message);
-        return;
-    }
-
-    console.log(row)
-
-    console.log("The last expressed volume from the right breast was: " + row.right + "ml")
-    tempstats.lastAmountRight = row.right;
+        console.log("The last expressed volume from the left breast was: " + row.left + "ml")
+        tempstats.lastAmountLeft = row.left;
 
 
-})
-db.close()
+    })
+}, 1000)
+
+setInterval(function() {
+    db.get('SELECT * FROM milk WHERE date order by date desc limit 1', function(err, row) {
+        if (err) {
+            console.log('Oh no!' + err.message);
+            return;
+        }
+
+        console.log(row)
+
+        console.log("The last expressed volume from the right breast was: " + row.right + "ml")
+        tempstats.lastAmountRight = row.right;
+
+
+    })
+}, 1000)
 module.exports = tempstats
     // module.exports = db

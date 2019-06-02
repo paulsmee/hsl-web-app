@@ -21,9 +21,9 @@ app.get("/", function(request, response) {
 });
 // Access the parse results as request.body
 app.post('/', function(request, response) {
-    console.log(request.body.user.leftBoob);
-    console.log(request.body.user.rightBoob);
-    db.run('INSERT INTO milk VALUES (NULL, ?, ?, CURRENT_TIMESTAMP)', [request.body.user.leftBoob, request.body.user.rightBoob], function(err) {
+    console.log(request.body.user.leftBreast);
+    console.log(request.body.user.rightBreast);
+    db.run('INSERT INTO milk VALUES (NULL, ?, ?, CURRENT_TIMESTAMP)', [request.body.user.leftBreast, request.body.user.rightBreast], function(err) {
         if (err) {
             console.log("There's another error!" + err.message);
         } else {
