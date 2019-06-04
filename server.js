@@ -60,7 +60,6 @@ app.get('/feed', function(req, res) {
     res.send(tempstats.feedChild + '')
     console.log(tempstats.feedChild + '')
 })
-
 app.get('/selectedTemp', function(req, res) {
     res.send(tempstats.selectedTemp + '')
 })
