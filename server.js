@@ -2,7 +2,6 @@ var express = require('express')
 var tempstats = require('./db.js')
 var path = require('path')
 var app = express()
-    // var db = require('./db.js')
 var sqlite3 = require('sqlite3')
 var db = new sqlite3.Database('web-app.db')
 
@@ -12,18 +11,13 @@ app.use(express.static(publicPath));
 // Parse URL-encoded bodies (as sent by HTML forms)
 app.use(express.urlencoded());
 
-// Parse JSON bodies (as sent by API clients)
-app.use(express.json());
-
 // All general page links should be listed below
 app.get("/", function(request, response) {
     response.sendFile("/index.html", {});
 });
-// Access the parse results as request.body
+
 // Add last expressed amount record
 app.post('/', function(request, response) {
-    // console.log(request.body.user.leftBreast);
-    // console.log(request.body.user.rightBreast);
     db.run('INSERT INTO milk VALUES (NULL, ?, ?, CURRENT_TIMESTAMP)', [request.body.user.leftBreast, request.body.user.rightBreast], function(err) {
         if (err) {
             console.log("There's another error!" + err.message);
@@ -32,11 +26,6 @@ app.post('/', function(request, response) {
             response.sendFile(__dirname + "/public/index.html");
         }
     });
-});
-
-// Add feed record -
-app.post('/feed', function(request, response) {
-    // console.log(request.body.user.feedChild);
     db.run('INSERT INTO feed VALUES (NULL, ?, CURRENT_TIMESTAMP)', [request.body.user.feedChild], function(err) {
         if (err) {
             console.log("There's another error!" + err.message);
@@ -60,22 +49,6 @@ app.get('/feed', function(req, res) {
     res.send(tempstats.feedChild + '')
     console.log(tempstats.feedChild + '')
 })
-app.get('/selectedTemp', function(req, res) {
-    res.send(tempstats.selectedTemp + '')
-})
-
-// Json testing sendfile is different to sendFile
-app.get('/json', function(req, res) {
-    res.sendfile('./test.json', {})
-})
-
-// 4xx Errors are served from here
-// app.use(function(req, res) {
-//     res.status(404)
-//     res.render('404.html', {
-//         urlAttempted: req.url
-//     })
-// })
 
 // Server listen code
 var port = 3000

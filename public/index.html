@@ -17,10 +17,9 @@
     <link rel="apple-touch-icon" sizes="167x167" href="/images/touch-icon-ipad-retina.png">
 
     <!-- iPhone X (1125px x 2436px) -->
-    <link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 812px)" href="/assets/img/splashscreens/apple_splash_1125.png">
+    <link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 812px)" href="/images/apple_splash_1125.png">
     <!-- iPhone 8 Plus, 7 Plus, 6s Plus, 6 Plus (1242px x 2208px) -->
-    <link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 736px)" href="/assets/img/splashscreens/apple_splash_1242.png">
-
+    <link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 736px)" href="/images/apple_splash_1242.png">
     <!-- iPhone 8, 7, 6s, 6 (750px x 1334px) -->
     <link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 667px)" href="/images/apple_splash_750.png">
     <!-- iPhone 5 (640px x 1136px) -->
@@ -28,26 +27,6 @@
 </head>
 
 <body ontouchstart="">
-    <!-- <script>
-        function ready() {
-
-            // Detects if device is on iOS 
-            const isIos = () => {
-                    const userAgent = window.navigator.userAgent.toLowerCase();
-                    return /iphone|ipad|ipod/.test(userAgent);
-                }
-                // Detects if device is in standalone mode
-            const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
-
-            // Checks if should display install popup notification:
-            if (isIos() && !isInStandaloneMode()) {
-                this.setState({
-                    showInstallMessage: true
-                });
-            }
-        }
-        document.addEventListener("DOMContentLoaded", ready);
-    </script> -->
     <div id="header">
         <h1>HSL Express Studies</h1>
     </div>
@@ -56,13 +35,12 @@
         <input autocomplete="off" type="text" name="user[leftBreast]" placeholder="ml">
         <label for="sideboob">Right Breast</label>
         <input autocomplete="off" type="text" name="user[rightBreast]" placeholder="ml">
-
-        <input type="button" onclick="validate()" value="Submit">
-        <input type="reset" value="Clear">
+        <label for="feedit">Length of Time Fed</label>
+        <input autocomplete="off" type="text" name="user[feedChild]" placeholder="Minutes">
     </form>
     <script>
         function validate() {
-            if (document.getElementsByName("user[leftBreast]")[0].value == "" || document.getElementsByName("user[rightBreast]")[0].value == "") {
+            if (document.getElementsByName("user[leftBreast]")[0].value == "" || document.getElementsByName("user[rightBreast]")[0].value == "" || document.getElementsByName("user[feedChild]")[0].value == "") {
                 alert("Please complete both fields");
             } else {
                 var form = document.getElementsByName("form")[0];
@@ -70,30 +48,10 @@
             }
         }
     </script>
-    <!-- <form method="post" action="/view">
-        <input type="number" name="rowID[row]">
-        <input type="submit" value="Submit">
-    </form> -->
-    <!-- Show Temps from DB -->
-    <!-- Surround the select box within a "custom-select" DIV element.
-Remember to set the width: -->
-
-    <!-- Data for feeding -->
-    <form id="feed" name="feedform" method="post" action="/feed" style="">
-        <label for="feedit">Length of Time Fed</label>
-        <input autocomplete="off" type="text" name="user[feedChild]" placeholder="Minutes">
-
-        <input type="button" onclick="validateFeed()" value="Submit">
-        <input type="reset" value="Clear">
-    </form>
     <script>
-        function validateFeed() {
-            if (document.getElementsByName("user[feedChild]")[0].value == "") {
-                alert("No data has been entered");
-            } else {
-                var form = document.getElementsByName("feedform")[0];
-                form.submit();
-            }
+        function clearForm() {
+            var form = document.getElementsByName("form")[0];
+            form.reset();
         }
     </script>
     <br>
@@ -133,21 +91,18 @@ Remember to set the width: -->
         }
     </script>
 
-    </div>
-
     <script>
         window.getFeedFromDatabase = function() {
             $.get('/feed')
                 .done(function(feedvalue) {
                     // console.log(leftvalue)
-                    document.getElementById("p3").innerHTML = feedvalue + '' + " mins";
+                    document.getElementById("p3").innerHTML = feedvalue + '' + "mins";
                 })
                 .catch(function(err) {
                     console.log('uh oh')
                 });
         }
     </script>
-    <br>
     <script>
         // getLeftFromDatabase();
         // getRightFromDatabase();
@@ -157,16 +112,16 @@ Remember to set the width: -->
     </script>
 
 
-
+    <!-- Icons are Right to Left for some reason -->
     <div class="navbar" id="myNavbar">
-        <a class="btn btn-default" onclick="window.location.reload();">
-            <i class="fa fa-chevron-right fa-2x"></i>
+        <a class="btn btn-default" onclick="alert('not implemented yet')">
+            <i class="fa fa-bar-chart fa-2x"></i>
         </a>
-        <a class="btn btn-default" onclick="window.location.reload();">
+        <a class="btn btn-default" onclick="clearForm()">
             <i class="fa fa-refresh fa-2x"></i>
         </a>
-        <a class="btn btn-default" onclick="window.location.reload();">
-            <i class="fa fa-chevron-left fa-2x"></i>
+        <a class="btn btn-default" onclick="validate()">
+            <i class="fa fa-check fa-2x"></i>
         </a>
     </div>
 </body>
