@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(120, 144, 146);
+    background-color: rgb(113, 161, 165);
     color: #222;
     font-family: Helvetica;
     font-size: 14px;
@@ -107,7 +107,7 @@ input[type=button],
     font-size: 25px;
     text-align: center;
     text-shadow: 0px 1px 0px #fff;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#999));
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(152, 198, 212)), to(rgb(115, 157, 175)));
     margin: 0;
     padding: 0;
     background-color: #ccc;

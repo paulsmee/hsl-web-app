@@ -70,7 +70,6 @@
         window.getLeftFromDatabase = function() {
             $.get('/left')
                 .done(function(leftvalue) {
-                    // console.log(leftvalue)
                     document.getElementById("p1").innerHTML = leftvalue + '' + "ml";
                 })
                 .catch(function(err) {
@@ -82,7 +81,6 @@
         window.getRightFromDatabase = function() {
             $.get('/right')
                 .done(function(rightvalue) {
-                    // console.log(rightvalue)
                     document.getElementById("p2").innerHTML = rightvalue + '' + "ml";
                 })
                 .catch(function(err) {
@@ -95,7 +93,6 @@
         window.getFeedFromDatabase = function() {
             $.get('/feed')
                 .done(function(feedvalue) {
-                    // console.log(leftvalue)
                     document.getElementById("p3").innerHTML = feedvalue + '' + "mins";
                 })
                 .catch(function(err) {
@@ -104,8 +101,9 @@
         }
     </script>
     <script>
-        // getLeftFromDatabase();
-        // getRightFromDatabase();
+        getLeftFromDatabase();
+        getRightFromDatabase();
+        getFeedFromDatabase();
         setInterval(getLeftFromDatabase, 6000)
         setInterval(getRightFromDatabase, 6000)
         setInterval(getFeedFromDatabase, 6000)
@@ -114,7 +112,7 @@
 
     <!-- Icons are Right to Left for some reason -->
     <div class="navbar" id="myNavbar">
-        <a class="btn btn-default" onclick="alert('not implemented yet')">
+        <a class="btn btn-default" onclick="alert('Warning: Not Yet Implemented!')">
             <i class="fa fa-bar-chart fa-2x"></i>
         </a>
         <a class="btn btn-default" onclick="clearForm()">
