@@ -20,10 +20,24 @@ app.get("/", function(request, response) {
     response.sendFile("/index.html", {});
 });
 // Access the parse results as request.body
+// Add last expressed amount record
 app.post('/', function(request, response) {
-    console.log(request.body.user.leftBreast);
-    console.log(request.body.user.rightBreast);
+    // console.log(request.body.user.leftBreast);
+    // console.log(request.body.user.rightBreast);
     db.run('INSERT INTO milk VALUES (NULL, ?, ?, CURRENT_TIMESTAMP)', [request.body.user.leftBreast, request.body.user.rightBreast], function(err) {
+        if (err) {
+            console.log("There's another error!" + err.message);
+        } else {
+            console.log('Record successfully added with id: ' + this.lastID);
+            response.sendFile(__dirname + "/public/index.html");
+        }
+    });
+});
+
+// Add feed record
+app.post('/feed', function(request, response) {
+    // console.log(request.body.user.feedChild);
+    db.run('INSERT INTO feed VALUES (NULL, ?, CURRENT_TIMESTAMP)', [request.body.user.feedChild], function(err) {
         if (err) {
             console.log("There's another error!" + err.message);
         } else {
@@ -41,6 +55,10 @@ app.get('/left', function(req, res) {
 app.get('/right', function(req, res) {
     res.send(tempstats.lastAmountRight + '')
     console.log(tempstats.lastAmountRight + '')
+})
+app.get('/feed', function(req, res) {
+    res.send(tempstats.feedChild + '')
+    console.log(tempstats.feedChild + '')
 })
 
 app.get('/selectedTemp', function(req, res) {

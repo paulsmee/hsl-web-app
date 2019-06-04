@@ -5,6 +5,7 @@
     <title>Hudson Science Labs </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
     <link rel="stylesheet" href="/css/style.css">
     <script src='/js/jquery.min.3.4.js'></script>
 
@@ -12,34 +13,43 @@
     <link rel="apple-touch-icon" sizes="152x152" href="touch-icon-ipad.png">
     <link rel="apple-touch-icon" sizes="180x180" href="touch-icon-iphone-retina.png">
     <link rel="apple-touch-icon" sizes="167x167" href="touch-icon-ipad-retina.png">
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <!-- <link href="/apple_splash_2048.png" sizes="2048x2732" rel="apple-touch-startup-image" />
-    <link href="/apple_splash_1668.png" sizes="1668x2224" rel="apple-touch-startup-image" />
-    <link href="/apple_splash_1536.png" sizes="1536x2048" rel="apple-touch-startup-image" />
-    <link href="/apple_splash_1125.png" sizes="1125x2436" rel="apple-touch-startup-image" />
-    <link href="/apple_splash_1242.png" sizes="1242x2208" rel="apple-touch-startup-image" /> -->
-    <link href="/images/apple_splash_750.png" sizes="750x1334" rel="apple-touch-startup-image" />
-    <link href="/images/apple_splash_640.png" sizes="640x1136" rel="apple-touch-startup-image" />
+
+    <!-- iPhone X (1125px x 2436px) -->
+    <link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 812px)" href="/assets/img/splashscreens/apple_splash_1125.png">
+
+    <!-- iPhone 8, 7, 6s, 6 (750px x 1334px) -->
+    <link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 667px)" href="/assets/img/splashscreens/apple_splash_750.png">
+
+    <!-- iPhone 8 Plus, 7 Plus, 6s Plus, 6 Plus (1242px x 2208px) -->
+    <link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 736px)" href="/assets/img/splashscreens/apple_splash_1242.png">
+
+    <!-- iPhone 5 (640px x 1136px) -->
+    <link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 568px)" href="/assets/img/splashscreens/apple_splash_640.png">
+
+    <link rel="stylesheet" href="/css/all.css">
 </head>
 
 <body>
     <script>
-        // Detects if device is on iOS 
-        const isIos = () => {
-                const userAgent = window.navigator.userAgent.toLowerCase();
-                return /iphone|ipad|ipod/.test(userAgent);
+        function ready() {
+
+            // Detects if device is on iOS 
+            const isIos = () => {
+                    const userAgent = window.navigator.userAgent.toLowerCase();
+                    return /iphone|ipad|ipod/.test(userAgent);
+                }
+                // Detects if device is in standalone mode
+            const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
+
+            // Checks if should display install popup notification:
+            if (isIos() && !isInStandaloneMode()) {
+                this.setState({
+                    showInstallMessage: true
+                });
             }
-            // Detects if device is in standalone mode
-        const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
-
-        // Checks if should display install popup notification:
-        if (isIos() && !isInStandaloneMode()) {
-            this.setState({
-                showInstallMessage: true
-            });
         }
+        document.addEventListener("DOMContentLoaded", ready);
     </script>
-
     <div id="header">
         <h1>HSL Express Studies</h1>
     </div>
@@ -67,6 +77,27 @@
         <input type="submit" value="Submit">
     </form> -->
     <!-- Show Temps from DB -->
+    <!-- Surround the select box within a "custom-select" DIV element.
+Remember to set the width: -->
+
+    <!-- Data for feeding -->
+    <form id="feed" name="feedform" method="post" action="/feed" style="">
+        <label for="feedit">Length of Time Fed</label>
+        <input autocomplete="off" type="text" name="user[feedChild]" placeholder="Minutes">
+
+        <input type="button" onclick="validateFeed()" value="Submit">
+        <input type="reset" value="Clear">
+    </form>
+    <script>
+        function validateFeed() {
+            if (document.getElementsByName("user[feedChild]")[0].value == "") {
+                alert("No data has been entered");
+            } else {
+                var form = document.getElementsByName("feedform")[0];
+                form.submit();
+            }
+        }
+    </script>
     <br>
     <div id="lastValue">
         <p id=heading>Last Amount Expressed</p>
@@ -81,7 +112,7 @@
         window.getLeftFromDatabase = function() {
             $.get('/left')
                 .done(function(leftvalue) {
-                    console.log(leftvalue)
+                    // console.log(leftvalue)
                     document.getElementById("p1").innerHTML = leftvalue + '' + "ml";
                 })
                 .catch(function(err) {
@@ -93,8 +124,23 @@
         window.getRightFromDatabase = function() {
             $.get('/right')
                 .done(function(rightvalue) {
-                    console.log(rightvalue)
+                    // console.log(rightvalue)
                     document.getElementById("p2").innerHTML = rightvalue + '' + "ml";
+                })
+                .catch(function(err) {
+                    console.log('uh oh')
+                });
+        }
+    </script>
+    <p id="p3">Right</p>
+    </div>
+
+    <script>
+        window.getFeedFromDatabase = function() {
+            $.get('/feed')
+                .done(function(feedvalue) {
+                    // console.log(leftvalue)
+                    document.getElementById("p3").innerHTML = feedvalue + '' + " Minutes";
                 })
                 .catch(function(err) {
                     console.log('uh oh')
@@ -107,10 +153,13 @@
         // getRightFromDatabase();
         setInterval(getLeftFromDatabase, 6000)
         setInterval(getRightFromDatabase, 6000)
+        setInterval(getFeedFromDatabase, 6000)
     </script>
 
+
+
     <div class="navbar" id="myNavbar">
-        <!-- <button onclick="window.location.reload();">Refresh</button> -->
+        <button onclick="window.location.reload();">Refresh</button>
         <a href="#news">News</a>
         <a href="#contact">Contact</a>
         <a href="#about">About</a>
