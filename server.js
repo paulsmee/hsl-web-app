@@ -34,7 +34,7 @@ app.post('/', function(request, response) {
     });
 });
 
-// Add feed record
+// Add feed record -
 app.post('/feed', function(request, response) {
     // console.log(request.body.user.feedChild);
     db.run('INSERT INTO feed VALUES (NULL, ?, CURRENT_TIMESTAMP)', [request.body.user.feedChild], function(err) {
