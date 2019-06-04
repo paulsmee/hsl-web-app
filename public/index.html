@@ -8,6 +8,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="HSL">
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/font-awesome-4.7.0/css/font-awesome.min.css">
     <script src='/js/jquery.min.3.4.js'></script>
 
     <link rel="apple-touch-icon" href="/images/touch-icon-iphone.png">
@@ -24,12 +25,10 @@
     <link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 667px)" href="/images/apple_splash_750.png">
     <!-- iPhone 5 (640px x 1136px) -->
     <link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 568px)" href="/images/apple_splash_640.png">
-
-    <link rel="stylesheet" href="/css/all.css">
 </head>
 
 <body ontouchstart="">
-    <script>
+    <!-- <script>
         function ready() {
 
             // Detects if device is on iOS 
@@ -48,7 +47,7 @@
             }
         }
         document.addEventListener("DOMContentLoaded", ready);
-    </script>
+    </script> -->
     <div id="header">
         <h1>HSL Express Studies</h1>
     </div>
@@ -101,9 +100,11 @@ Remember to set the width: -->
     <div id="lastValue">
         <p id=heading>Last Amount Expressed</p>
         <p id="p1left">Left Breast</p>
+        <p id="p3feed">Time Fed</p>
         <p id="p2right">Right Breast</p>
         <br>
         <p id="p1">Left</p>
+        <p id="p3">Feed</p>
         <p id="p2">Right</p>
     </div>
 
@@ -131,7 +132,7 @@ Remember to set the width: -->
                 });
         }
     </script>
-    <p id="p3">Right</p>
+
     </div>
 
     <script>
@@ -139,7 +140,7 @@ Remember to set the width: -->
             $.get('/feed')
                 .done(function(feedvalue) {
                     // console.log(leftvalue)
-                    document.getElementById("p3").innerHTML = feedvalue + '' + " Minutes";
+                    document.getElementById("p3").innerHTML = feedvalue + '' + " mins";
                 })
                 .catch(function(err) {
                     console.log('uh oh')
@@ -158,11 +159,15 @@ Remember to set the width: -->
 
 
     <div class="navbar" id="myNavbar">
-        <button onclick="window.location.reload();">Refresh</button>
-        <a href="#news">News</a>
-        <a href="#contact">Contact</a>
-        <a href="#about">About</a>
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+        <a class="btn btn-default" onclick="window.location.reload();">
+            <i class="fa fa-chevron-right fa-2x"></i>
+        </a>
+        <a class="btn btn-default" onclick="window.location.reload();">
+            <i class="fa fa-refresh fa-2x"></i>
+        </a>
+        <a class="btn btn-default" onclick="window.location.reload();">
+            <i class="fa fa-chevron-left fa-2x"></i>
+        </a>
     </div>
 </body>
 
