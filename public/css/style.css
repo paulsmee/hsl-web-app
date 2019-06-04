@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(154, 170, 173);
+    background-color: rgb(120, 144, 146);
     color: #222;
     font-family: Helvetica;
     font-size: 14px;
@@ -60,14 +60,14 @@ input[type=text]:focus {
 input[type=button],
 [type=reset] {
     position: relative;
-    top: 7px;
-    left: 6px;
+    top: 6px;
+    left: 5px;
     font-weight: bold;
     text-align: center;
     color: white;
     text-shadow: rgba(0, 0, 0, 0.6) 1px -1px 1px;
     line-height: 28px;
-    border-width: 1px 4px 1px 4px;
+    border-width: 1px 2px 1px 2px;
     background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(114, 113, 113)), to(rgb(56, 56, 56)));
     -webkit-border-top-left-radius: 8px;
     -webkit-border-top-right-radius: 8px;
