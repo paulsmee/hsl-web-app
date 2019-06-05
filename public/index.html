@@ -30,18 +30,18 @@
     <div id="header">
         <h1>HSL Express Studies</h1>
     </div>
-    <form id="expressed" name="form" method="post" action="/" style="">
-        <label for="sideboob">Left Breast</label>
-        <input autocomplete="off" type="text" name="user[leftBreast]" placeholder="ml">
-        <label for="sideboob">Right Breast</label>
-        <input autocomplete="off" type="text" name="user[rightBreast]" placeholder="ml">
-        <label for="feedit">Length of Time Fed</label>
-        <input autocomplete="off" type="text" name="user[feedChild]" placeholder="Minutes">
+    <form id="expressed" name="form" method="post" action="/">
+        <label>Left Breast</label>
+        <input autocomplete="off" type="number" name="user[leftBreast]" placeholder="ml" min="0" max="255">
+        <label>Right Breast</label>
+        <input autocomplete="off" type="number" name="user[rightBreast]" placeholder="ml">
+        <label for="feedit">Feed Time (minutes)</label>
+        <input autocomplete="off" type="number" value="0" name="user[feedChild]">
     </form>
     <script>
         function validate() {
             if (document.getElementsByName("user[leftBreast]")[0].value == "" || document.getElementsByName("user[rightBreast]")[0].value == "" || document.getElementsByName("user[feedChild]")[0].value == "") {
-                alert("Please complete both fields");
+                alert("Please complete all fields. Only numbers from 0 to 255 can be accepted.");
             } else {
                 var form = document.getElementsByName("form")[0];
                 form.submit();
@@ -56,9 +56,9 @@
     </script>
     <br>
     <div id="lastValue">
-        <p id=heading>Last Values</p>
+        <p id=heading>Last Entries</p>
         <p id="p1left">Left Breast</p>
-        <p id="p3feed">Time Fed</p>
+        <p id="p3feed">Feed Time</p>
         <p id="p2right">Right Breast</p>
         <br>
         <p id="p1">Left</p>
@@ -93,7 +93,7 @@
         window.getFeedFromDatabase = function() {
             $.get('/feed')
                 .done(function(feedvalue) {
-                    document.getElementById("p3").innerHTML = feedvalue + '' + "mins";
+                    document.getElementById("p3").innerHTML = feedvalue + '' + " mins";
                 })
                 .catch(function(err) {
                     console.log('uh oh')
@@ -112,7 +112,10 @@
 
     <!-- Icons are Right to Left for some reason -->
     <div class="navbar" id="myNavbar">
-        <a class="btn btn-default" onclick="alert('Warning: Not Yet Implemented!')">
+        <a class="btn btn-default" onclick="alert('Warning: Settings Not Implemented!')">
+            <i class="fa fa-cog fa-2x"></i>
+        </a>
+        <a class="btn btn-default" onclick="alert('Warning: Historical Data Not Implemented!')">
             <i class="fa fa-bar-chart fa-2x"></i>
         </a>
         <a class="btn btn-default" onclick="clearForm()">

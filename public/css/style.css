@@ -41,7 +41,8 @@ label {
     font-weight: bold;
 }
 
-input[type=text] {
+input[type=text],
+[type=number] {
     width: 100%;
     padding: 10px 10px;
     margin: 8px 0;
@@ -137,7 +138,7 @@ input[type=button],
 
 .navbar a {
     float: right;
-    width: 33.33%;
+    width: 25%;
     padding: 2px 2px 2px 2px;
     font-size: 25px;
     text-align: center;
