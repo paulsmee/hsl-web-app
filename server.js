@@ -6,7 +6,7 @@ var sqlite3 = require('sqlite3')
 var db = new sqlite3.Database('web-app.db')
 
 var publicPath = path.resolve(__dirname, "public");
-app.use(express.static(publicPath));
+app.use(express.static(publicPath))
 
 // Parse URL-encoded bodies (as sent by HTML forms)
 app.use(express.urlencoded());
