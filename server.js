@@ -16,6 +16,9 @@ app.get("/", function(request, response) {
     response.sendFile("/index.html", {});
 });
 
+app.get("/history", function(request, response) {
+    response.sendFile(__dirname + "/public/pages/history.html", {});
+});
 // Add last expressed amount record
 app.post('/', function(request, response) {
     db.run('INSERT INTO milk VALUES (NULL, ?, ?, CURRENT_TIMESTAMP)', [request.body.user.leftBreast, request.body.user.rightBreast], function(err) {

@@ -37,6 +37,7 @@
         <input autocomplete="off" type="number" name="user[rightBreast]" placeholder="ml">
         <label for="feedit">Feed Time (minutes)</label>
         <input autocomplete="off" type="number" value="0" name="user[feedChild]">
+        <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;" />
     </form>
     <script>
         function validate() {
@@ -115,7 +116,7 @@
         <a class="btn btn-default" onclick="alert('Warning: Settings Not Implemented!')">
             <i class="fa fa-cog fa-2x"></i>
         </a>
-        <a class="btn btn-default" onclick="alert('Warning: Historical Data Not Implemented!')">
+        <a class="btn btn-default" href="/history">
             <i class="fa fa-bar-chart fa-2x"></i>
         </a>
         <a class="btn btn-default" onclick="clearForm()">

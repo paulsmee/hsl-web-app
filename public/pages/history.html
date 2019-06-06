@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hudson Science Labs </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="HSL">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/graph.css">
+    <link rel="stylesheet" href="/css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <script src='/js/jquery.min.3.4.js'></script>
+
+    <link rel="apple-touch-icon" href="/images/touch-icon-iphone.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/touch-icon-ipad.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/touch-icon-iphone-retina.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="/images/touch-icon-ipad-retina.png">
+
+    <!-- iPhone X (1125px x 2436px) -->
+    <link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 812px)" href="/images/apple_splash_1125.png">
+    <!-- iPhone 8 Plus, 7 Plus, 6s Plus, 6 Plus (1242px x 2208px) -->
+    <link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 736px)" href="/images/apple_splash_1242.png">
+    <!-- iPhone 8, 7, 6s, 6 (750px x 1334px) -->
+    <link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 667px)" href="/images/apple_splash_750.png">
+    <!-- iPhone 5 (640px x 1136px) -->
+    <link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 568px)" href="/images/apple_splash_640.png">
+</head>
+
+<body ontouchstart="">
+    <div id="header">
+        <h1>HSL Historical Data</h1>
+
+    </div>
+    <p id=heading>Recent Expressed Amounts</p>
+    <p id="time">9:00am</p>
+    <div class="container">
+        <div class="skills html">150ml</div>
+    </div>
+
+    <p id="time">10:30am</p>
+    <div class="container">
+        <div class="skills css">40ml</div>
+    </div>
+
+
+    <div class="container">
+        <!-- <div class="time">12:10pm</div> -->
+        <div class="skills js">120ml
+            <i class="time">12:10pm</i>
+        </div>
+    </div>
+
+    <p id="time">14:06pm</p>
+    <div class="container">
+        <div class="skills php">60ml</div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <p id=heading>Graph will Go Here</p>
+
+
+    <!-- Icons are Right to Left for some reason -->
+    <div class="navbar" id="myNavbar">
+        <a class="btn btn-default" onclick="alert('Warning: Settings Not Implemented!')">
+            <i class="fa fa-cog fa-2x"></i>
+        </a>
+        <a class="btn btn-default" onclick="alert('Warning: Historical Data Not Implemented!')">
+            <i class="fa fa-bar-chart fa-2x"></i>
+        </a>
+        <a class="btn btn-default" onclick="clearForm()">
+            <i class="fa fa-refresh fa-2x"></i>
+        </a>
+        <a class="btn btn-default" href="/">
+            <i class="fa fa-home fa-2x"></i>
+        </a>
+    </div>
+</body>
+
+</html>
