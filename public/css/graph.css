@@ -1,59 +1,91 @@
-/* Make sure that padding behaves as expected */
-
 * {
-    box-sizing: border-box
+    box-sizing: border-box;
+}
+
+
+/* Create three unequal columns that floats next to each other */
+
+.column {
+    float: left;
+    /* padding: 10px; */
+    height: 320px
+    /* Should be removed. Only for demonstration */
+}
+
+.left {
+    width: 2%;
+    border-top: 1px solix rgb(113, 143, 146);
+    background-color: rgb(113, 143, 146);
+}
+
+.right {
+    width: 8%;
+    border-top: 1px solix rgb(113, 143, 146);
+    /* background-color: rgb(14, 43, 46); */
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(114, 113, 113)), to(rgb(56, 56, 56)));
+}
+
+.middle {
+    width: 90%;
+    border-top: 1px solix rgb(113, 143, 146);
 }
 
 
 /* Container for skill bars */
 
 .container {
-    margin: auto;
-    width: 90%;
+    width: 100%;
+    /* Full width */
     background-color: rgb(113, 161, 165);
+    /* Grey background */
 }
 
 .skills {
     text-align: right;
     /* Right-align text */
-    /* padding: 5px; */
+    padding: 10px;
     /* Add some padding */
     color: white;
     /* White text color */
 }
 
-.time {
-    text-align: left;
-}
-
 .html {
-    width: 75%;
-    background-color: #4CAF50;
+    width: 90%;
+    background-color: rgb(2, 33, 36);
 }
 
 
 /* Green */
 
 .css {
-    width: 20%;
-    background-color: #2196F3;
+    width: 80%;
+    background-color: rgb(2, 33, 36);
 }
 
 
 /* Blue */
 
 .js {
-    width: 60%;
-    background-color: #f44336;
+    width: 65%;
+    background-color: rgb(2, 33, 36);
 }
 
 
 /* Red */
 
 .php {
-    width: 30%;
-    background-color: #808080;
+    width: 60%;
+    background-color: rgb(2, 33, 36);
 }
 
 
 /* Dark Grey */
+
+
+/* Clear floats after the columns */
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}

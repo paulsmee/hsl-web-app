@@ -1,0 +1,5 @@
+.verttext {
+    writing-mode: vertical-lr;
+    /* float: left; */
+    text-align: left;
+}

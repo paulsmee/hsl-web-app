@@ -9,6 +9,7 @@
     <meta name="apple-mobile-web-app-title" content="HSL">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/graph.css">
+    <link rel="stylesheet" href="/css/history.css">
     <link rel="stylesheet" href="/css/font-awesome-4.7.0/css/font-awesome.min.css">
     <script src='/js/jquery.min.3.4.js'></script>
 
@@ -32,48 +33,54 @@
         <h1>HSL Historical Data</h1>
 
     </div>
+    <div style="float: left">Left Text</div>
+    <div style="float: right">Right Text</div>
+    <div style="margin: 0 auto; width: 100px;">Centered Text</div>
+    <!-- Wrap the below in a container and give a light colored background
+    also change all bars to be the same color and not bright colors, make it suit -->
     <p id=heading>Recent Expressed Amounts</p>
-    <p id="time">9:00am</p>
-    <div class="container">
-        <div class="skills html">150ml</div>
-    </div>
 
-    <p id="time">10:30am</p>
-    <div class="container">
-        <div class="skills css">40ml</div>
-    </div>
+    <div class="row">
+        <div class="column left">
+        </div>
+        <div class="column middle">
+            <p>HTML</p>
+            <div class="container">
+                <div class="skills html">90%</div>
+            </div>
 
+            <p>CSS</p>
+            <div class="container">
+                <div class="skills css">80%</div>
+            </div>
 
-    <div class="container">
-        <!-- <div class="time">12:10pm</div> -->
-        <div class="skills js">120ml
-            <i class="time">12:10pm</i>
+            <p>JavaScript</p>
+            <div class="container">
+                <div class="skills js">65%</div>
+            </div>
+
+            <p>PHP</p>
+            <div class="container">
+                <div class="skills php">60%</div>
+            </div>
+        </div>
+        <div class="column right" ">
         </div>
     </div>
 
-    <p id="time">14:06pm</p>
-    <div class="container">
-        <div class="skills php">60ml</div>
-    </div>
-    <br>
-    <br>
-    <br>
-    <p id=heading>Graph will Go Here</p>
-
-
     <!-- Icons are Right to Left for some reason -->
-    <div class="navbar" id="myNavbar">
-        <a class="btn btn-default" onclick="alert('Warning: Settings Not Implemented!')">
-            <i class="fa fa-cog fa-2x"></i>
+    <div class="navbar " id="myNavbar ">
+        <a class="btn btn-default " onclick="alert( 'Warning: Settings Not Implemented!') ">
+            <i class="fa fa-cog fa-2x "></i>
         </a>
-        <a class="btn btn-default" onclick="alert('Warning: Historical Data Not Implemented!')">
-            <i class="fa fa-bar-chart fa-2x"></i>
+        <a class="btn btn-default " onclick="alert( 'Warning: Historical Data Not Implemented!') ">
+            <i class="fa fa-bar-chart fa-2x "></i>
         </a>
-        <a class="btn btn-default" onclick="clearForm()">
-            <i class="fa fa-refresh fa-2x"></i>
+        <a class="btn btn-default " onclick="clearForm() ">
+            <i class="fa fa-refresh fa-2x "></i>
         </a>
-        <a class="btn btn-default" href="/">
-            <i class="fa fa-home fa-2x"></i>
+        <a class="btn btn-default " href="/ ">
+            <i class="fa fa-home fa-2x "></i>
         </a>
     </div>
 </body>
