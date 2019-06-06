@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="/css/graph.css">
     <link rel="stylesheet" href="/css/history.css">
     <link rel="stylesheet" href="/css/font-awesome-4.7.0/css/font-awesome.min.css">
-    <script src='/js/jquery.min.3.4.js'></script>
+    <script src='/js/jquery.min.3.4.js' type="text/javascript"></script>
+    <script src='/js/standalone.js' type="text/javascript"></script>
 
     <link rel="apple-touch-icon" href="/images/touch-icon-iphone.png">
     <link rel="apple-touch-icon" sizes="152x152" href="/images/touch-icon-ipad.png">
@@ -33,41 +34,104 @@
         <h1>HSL Historical Data</h1>
 
     </div>
-    <div style="float: left">Left Text</div>
+    <!-- <div style="float: left">Left Text</div>
     <div style="float: right">Right Text</div>
-    <div style="margin: 0 auto; width: 100px;">Centered Text</div>
+    <div style="margin: 0 auto; width: 100px;">Centered Text</div> -->
     <!-- Wrap the below in a container and give a light colored background
     also change all bars to be the same color and not bright colors, make it suit -->
-    <p id=heading>Recent Expressed Amounts</p>
+    <p id=heading>Today</p>
 
     <div class="row">
         <div class="column left">
         </div>
         <div class="column middle">
-            <p>6:00am</p>
             <div class="container">
-                <div class="skills html">90ml</div>
+                <div class="firsttime">.
+                    <div class="skills" style="float: right">90ml</div>
+                    <div class="skills" style="float: left">4:00am</div>
+                </div>
+            </div>
+            <br>
+            <div class="container">
+                <div class="secondtime">.
+                    <div class="skills" style="float: left">8:25am</div>
+                    <div class="skills" style="float: right">65ml</div>
+                </div>
+            </div>
+            <br>
+            <div class="container">
+                <div class="thirdtime">.
+                    <div class="skills" style="float: left">11:35am</div>
+                    <div class="skills" style="float: right">70ml</div>
+                </div>
+            </div>
+            <br>
+            <div class="container">
+                <div class="fourthtime">.
+                    <div class="skills" style="float: left">4:30pm</div>
+                    <div class="skills" style="float: right">30ml</div>
+                </div>
+            </div>
+            <br>
+            <div class="container">
+                <div class="fifthtime">.
+                    <div class="skills" style="float: left">9:10pm</div>
+                    <div class="skills" style="float: right">100ml</div>
+                </div>
             </div>
 
-            <p>9:00am</p>
-            <div class="container">
-                <div class="skills css">65ml</div>
-            </div>
-
-            <p>11:35am</p>
-            <div class="container">
-                <div class="skills js">70ml</div>
-            </div>
-
-            <p>2:30pm</p>
-            <div class="container">
-                <div class="skills php">29ml</div>
-            </div>
         </div>
-        <div class="column right" ">
+        <div class="column right">
         </div>
     </div>
+    <p id="lineabove"></p>
 
+    <p id=heading>Yesterday</p>
+
+    <div class="row">
+        <div class="column left">
+        </div>
+        <div class="column middle">
+            <div class="container">
+                <div class="firsttimey">.
+                    <div class="skills" style="float: right">100ml</div>
+                    <div class="skills" style="float: left">4:00am</div>
+                </div>
+            </div>
+            <br>
+            <div class="container">
+                <div class="secondtimey">.
+                    <div class="skills" style="float: left">8:25am</div>
+                    <div class="skills" style="float: right">40ml</div>
+                </div>
+            </div>
+            <br>
+            <div class="container">
+                <div class="thirdtimey">.
+                    <div class="skills" style="float: left">11:35am</div>
+                    <div class="skills" style="float: right">80ml</div>
+                </div>
+            </div>
+            <br>
+            <div class="container">
+                <div class="fourthtimey">.
+                    <div class="skills" style="float: left">4:30pm</div>
+                    <div class="skills" style="float: right">20ml</div>
+                </div>
+            </div>
+            <br>
+            <div class="container">
+                <div class="fifthtimey">.
+                    <div class="skills" style="float: left">9:10pm</div>
+                    <div class="skills" style="float: right">70ml</div>
+                </div>
+            </div>
+
+        </div>
+        <div class="column right">
+        </div>
+    </div>
+    <p id="lineabove"></p>
     <!-- Icons are Right to Left for some reason -->
     <div class="navbar " id="myNavbar ">
         <a class="btn btn-default " onclick="alert( 'Warning: Settings Not Implemented!') ">

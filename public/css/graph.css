@@ -8,26 +8,21 @@
 .column {
     float: left;
     /* padding: 10px; */
-    height: 320px
+    height: 145px
     /* Should be removed. Only for demonstration */
 }
 
 .left {
     width: 2%;
-    border-top: 1px solix rgb(113, 143, 146);
-    background-color: rgb(113, 143, 146);
 }
 
 .right {
-    width: 8%;
-    border-top: 1px solix rgb(113, 143, 146);
-    /* background-color: rgb(14, 43, 46); */
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(114, 113, 113)), to(rgb(56, 56, 56)));
+    width: 5%;
+    float: right;
 }
 
 .middle {
     width: 90%;
-    border-top: 1px solix rgb(113, 143, 146);
 }
 
 
@@ -43,43 +38,69 @@
 .skills {
     text-align: right;
     /* Right-align text */
-    padding: 10px;
+    padding: 1px;
     /* Add some padding */
     color: white;
     /* White text color */
 }
 
-.html {
+
+/* Today Values 
+Minimum percentage to show is 30% any lower seems to break it */
+
+.firsttime {
     width: 90%;
     background-color: rgb(2, 33, 36);
 }
 
-
-/* Green */
-
-.css {
-    width: 80%;
-    background-color: rgb(2, 33, 36);
-}
-
-
-/* Blue */
-
-.js {
+.secondtime {
     width: 65%;
     background-color: rgb(2, 33, 36);
 }
 
+.thirdtime {
+    width: 70%;
+    background-color: rgb(2, 33, 36);
+}
 
-/* Red */
+.fourthtime {
+    width: 30%;
+    background-color: rgb(2, 33, 36);
+}
 
-.php {
-    width: 60%;
+.fifthtime {
+    width: 100%;
     background-color: rgb(2, 33, 36);
 }
 
 
-/* Dark Grey */
+/* Yesterday Values
+Minimum percentage to show is 30% any lower seems to break it */
+
+.firsttimey {
+    width: 100%;
+    background-color: rgb(33, 50, 51);
+}
+
+.secondtimey {
+    width: 40%;
+    background-color: rgb(33, 50, 51);
+}
+
+.thirdtimey {
+    width: 80%;
+    background-color: rgb(33, 50, 51);
+}
+
+.fourthtimey {
+    width: 30%;
+    background-color: rgb(33, 50, 51);
+}
+
+.fifthtimey {
+    width: 70%;
+    background-color: rgb(33, 50, 51);
+}
 
 
 /* Clear floats after the columns */

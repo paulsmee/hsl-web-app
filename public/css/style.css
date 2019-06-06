@@ -89,6 +89,13 @@ input[type=button],
     border-bottom: 1px solid rgb(56, 56, 56);
 }
 
+#lineabove {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    border-top: 1px solid rgb(56, 56, 56);
+}
+
 #p1left,
 #p2right,
 #p3feed {
