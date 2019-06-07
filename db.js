@@ -62,5 +62,80 @@ setInterval(function() {
 
     })
 }, 6000)
+
+// Get the last row to use for Graph data
+setInterval(function() {
+    db.each('SELECT * FROM (SELECT * FROM milk ORDER BY date DESC LIMIT 1) AS date ORDER BY date LIMIT 1', function(err, row) {
+        if (err) {
+            console.log('Oh no!' + err.message);
+            return;
+        }
+
+        // console.log(row)
+        tempstats.last1 = row;
+
+
+    })
+}, 6000)
+
+// Get the second last row to use for Graph data
+setInterval(function() {
+    db.each('SELECT * FROM (SELECT * FROM milk ORDER BY date DESC LIMIT 2) AS date ORDER BY date LIMIT 1', function(err, row) {
+        if (err) {
+            console.log('Oh no!' + err.message);
+            return;
+        }
+
+        // console.log(row)
+        tempstats.last2 = row;
+
+
+    })
+}, 6000)
+
+// Get third last row to use for Graph data
+setInterval(function() {
+    db.each('SELECT * FROM (SELECT * FROM milk ORDER BY date DESC LIMIT 3) AS date ORDER BY date LIMIT 1', function(err, row) {
+        if (err) {
+            console.log('Oh no!' + err.message);
+            return;
+        }
+
+        // console.log(row)
+        tempstats.last3 = row;
+
+
+    })
+}, 6000)
+
+// Get fourth last row to use for Graph data
+setInterval(function() {
+    db.each('SELECT * FROM (SELECT * FROM milk ORDER BY date DESC LIMIT 4) AS date ORDER BY date LIMIT 1', function(err, row) {
+        if (err) {
+            console.log('Oh no!' + err.message);
+            return;
+        }
+
+        // console.log(row)
+        tempstats.last4 = row;
+
+
+    })
+}, 6000)
+
+// Get fourth last row to use for Graph data
+setInterval(function() {
+    db.each('SELECT * FROM (SELECT * FROM milk ORDER BY date DESC LIMIT 5) AS date ORDER BY date LIMIT 1', function(err, row) {
+        if (err) {
+            console.log('Oh no!' + err.message);
+            return;
+        }
+
+        // console.log(row)
+        tempstats.last5 = row;
+
+
+    })
+}, 6000)
+
 module.exports = tempstats
-    // module.exports = db

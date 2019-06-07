@@ -47,7 +47,7 @@
         <div class="column middle">
             <div class="container">
                 <div class="firsttime">.
-                    <div class="skills" style="float: right">90ml</div>
+                    <div class="skills" id="l1" style="float: right">temp</div>
                     <div class="skills" style="float: left">4:00am</div>
                 </div>
             </div>
@@ -85,6 +85,22 @@
         </div>
     </div>
     <p id="lineabove"></p>
+
+    <script>
+        window.getLast1FromDatabase = function() {
+            $.get('/l1')
+                .done(function(leftvalue) {
+                    document.getElementById("l1").innerHTML = leftvalue + '' + "ml";
+                })
+                .catch(function(err) {
+                    console.log('uh oh')
+                });
+        }
+    </script>
+    <script>
+        getLast1FromDatabase()
+    </script>
+
 
     <p id=heading>Yesterday</p>
 

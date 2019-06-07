@@ -52,9 +52,12 @@ app.get('/feed', function(req, res) {
     res.send(tempstats.feedChild + '')
     console.log(tempstats.feedChild + '')
 })
+app.get('/l1', function(req, res) {
+            res.send(Math(tempstats.last1.left + tempstats.last1.left) console.log("Last 1: " + tempstats.last1 + 'ml')
+            })
 
-// Server listen code
-var port = 3000
-app.listen(port, function() {
-    console.log('The server is listening on port ' + port)
-})
+        // Server listen code
+        var port = 3000
+        app.listen(port, function() {
+            console.log('The server is listening on port ' + port)
+        })
