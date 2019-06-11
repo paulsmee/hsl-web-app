@@ -29,7 +29,7 @@ setInterval(function() {
             return;
         }
 
-        console.log(row)
+        // console.log(row)
         tempstats.lastAmountLeft = row.left;
 
 
@@ -43,7 +43,7 @@ setInterval(function() {
             return;
         }
 
-        console.log(row)
+        // console.log(row)
         tempstats.lastAmountRight = row.right;
 
 
@@ -56,7 +56,7 @@ setInterval(function() {
             return;
         }
 
-        console.log(row)
+        // console.log(row)
         tempstats.feedChild = row.minutes;
 
 
@@ -71,7 +71,7 @@ setInterval(function() {
             return;
         }
 
-        // console.log(row)
+        // console.log(parseInt(row.left) + parseInt(row.right))
         tempstats.last1 = row;
 
 
@@ -137,5 +137,6 @@ setInterval(function() {
 
     })
 }, 6000)
+
 
 module.exports = tempstats

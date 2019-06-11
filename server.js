@@ -50,13 +50,19 @@ app.get('/right', function(req, res) {
     console.log(tempstats.lastAmountRight + '')
 })
 app.get('/feed', function(req, res) {
-        res.send(tempstats.feedChild + '')
-        console.log(tempstats.feedChild + '')
-    })
-    // app.get('/l1', function(req, res) {
-    //             res.send(Math(tempstats.last1.left + tempstats.last1.left) 
-    //             console.log("Last 1: " + tempstats.last1 + 'ml')
-    //             })
+    res.send(tempstats.feedChild + '')
+    console.log(tempstats.feedChild + '')
+})
+
+app.get('/l1', function(req, res) {
+    var l1Value = parseInt(tempstats.last1.left) + parseInt(tempstats.last1.right)
+    console.log(tempstats.last1.left);
+    // var left = tempstats.last.left
+    res.send(l1Value + '')
+        // console.log(left)
+        // console.log("Last 1: " + l1Value + 'ml')
+})
+
 
 // Server listen code
 var port = 3000
