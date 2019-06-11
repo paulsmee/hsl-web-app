@@ -54,15 +54,27 @@ app.get('/feed', function(req, res) {
     console.log(tempstats.feedChild + '')
 })
 
+// Data for most recent graph
 app.get('/l1', function(req, res) {
     var l1Value = parseInt(tempstats.last1.left) + parseInt(tempstats.last1.right)
-    console.log(tempstats.last1.left);
-    // var left = tempstats.last.left
     res.send(l1Value + '')
-        // console.log(left)
-        // console.log("Last 1: " + l1Value + 'ml')
 })
-
+app.get('/l2', function(req, res) {
+    var l2Value = parseInt(tempstats.last2.left) + parseInt(tempstats.last2.right)
+    res.send(l2Value + '')
+})
+app.get('/l3', function(req, res) {
+    var l3Value = parseInt(tempstats.last3.left) + parseInt(tempstats.last3.right)
+    res.send(l3Value + '')
+})
+app.get('/l4', function(req, res) {
+    var l4Value = parseInt(tempstats.last4.left) + parseInt(tempstats.last4.right)
+    res.send(l4Value + '')
+})
+app.get('/l5', function(req, res) {
+    var l5Value = parseInt(tempstats.last5.left) + parseInt(tempstats.last5.right)
+    res.send(l5Value + '')
+})
 
 // Server listen code
 var port = 3000

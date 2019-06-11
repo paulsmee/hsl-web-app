@@ -71,7 +71,6 @@ setInterval(function() {
             return;
         }
 
-        // console.log(parseInt(row.left) + parseInt(row.right))
         tempstats.last1 = row;
 
 
@@ -101,7 +100,7 @@ setInterval(function() {
             return;
         }
 
-        // console.log(row)
+        console.log(row)
         tempstats.last3 = row;
 
 
