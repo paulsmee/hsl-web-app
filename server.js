@@ -21,7 +21,7 @@ app.get("/history", function(request, response) {
     })
     // Add last expressed amount record
 app.post('/', function(request, response) {
-    db.run('INSERT INTO milk VALUES (NULL, ?, ?, CURRENT_TIMESTAMP)', [request.body.user.leftBreast, request.body.user.rightBreast], function(err) {
+    db.run('INSERT INTO milk VALUES (NULL, ?, ?, CURRENT_DATE, CURRENT_TIME)', [request.body.user.leftBreast, request.body.user.rightBreast], function(err) {
         if (err) {
             console.log("There's another error!" + err.message)
         } else {
@@ -77,9 +77,12 @@ app.get('/l5', function(req, res) {
 })
 
 // Time for last values
-app.get('/l1', function(req, res) {
-    var l1Value = parseInt(tempstats.last1.left) + parseInt(tempstats.last1.right)
-    res.send(l1Value + '')
+app.get('/l1t', function(req, res) {
+    var date = new Date()
+    console.log("today" + date.toLocaleDateString() + ".")
+    var l1TValue = tempstats.last1.date
+    console.log(l1TValue)
+    res.send(l1TValue + '')
 })
 
 // app.get('/l2', function(req, res) {
