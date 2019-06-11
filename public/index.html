@@ -43,17 +43,17 @@
     <script>
         function validate() {
             if (document.getElementsByName("user[leftBreast]")[0].value == "" || document.getElementsByName("user[rightBreast]")[0].value == "" || document.getElementsByName("user[feedChild]")[0].value == "") {
-                alert("Please complete all fields. Only numbers from 0 to 255 can be accepted.");
+                alert("Please complete all fields. Only numbers from 0 to 255 can be accepted.")
             } else {
-                var form = document.getElementsByName("form")[0];
-                form.submit();
+                var form = document.getElementsByName("form")[0]
+                form.submit()
             }
         }
     </script>
     <script>
         function clearForm() {
-            var form = document.getElementsByName("form")[0];
-            form.reset();
+            var form = document.getElementsByName("form")[0]
+            form.reset()
         }
     </script>
     <br>
@@ -72,22 +72,22 @@
         window.getLeftFromDatabase = function() {
             $.get('/left')
                 .done(function(leftvalue) {
-                    document.getElementById("p1").innerHTML = leftvalue + '' + "ml";
+                    document.getElementById("p1").innerHTML = leftvalue + '' + "ml"
                 })
                 .catch(function(err) {
                     console.log('uh oh')
-                });
+                })
         }
     </script>
     <script>
         window.getRightFromDatabase = function() {
             $.get('/right')
                 .done(function(rightvalue) {
-                    document.getElementById("p2").innerHTML = rightvalue + '' + "ml";
+                    document.getElementById("p2").innerHTML = rightvalue + '' + "ml"
                 })
                 .catch(function(err) {
                     console.log('uh oh')
-                });
+                })
         }
     </script>
 
@@ -95,17 +95,17 @@
         window.getFeedFromDatabase = function() {
             $.get('/feed')
                 .done(function(feedvalue) {
-                    document.getElementById("p3").innerHTML = feedvalue + '' + " mins";
+                    document.getElementById("p3").innerHTML = feedvalue + '' + " mins"
                 })
                 .catch(function(err) {
                     console.log('uh oh')
-                });
+                })
         }
     </script>
     <script>
-        getLeftFromDatabase();
-        getRightFromDatabase();
-        getFeedFromDatabase();
+        getLeftFromDatabase()
+        getRightFromDatabase()
+        getFeedFromDatabase()
         setInterval(getLeftFromDatabase, 6000)
         setInterval(getRightFromDatabase, 6000)
         setInterval(getFeedFromDatabase, 6000)
