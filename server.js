@@ -26,16 +26,17 @@ app.post('/', function(request, response) {
             console.log("There's another error!" + err.message);
         } else {
             console.log('Record successfully added with id: ' + this.lastID);
-            response.sendFile(__dirname + "/public/index.html");
         }
-    });
-    db.run('INSERT INTO feed VALUES (NULL, ?, CURRENT_TIMESTAMP)', [request.body.user.feedChild], function(err) {
-        if (err) {
-            console.log("There's another error!" + err.message);
-        } else {
-            console.log('Record successfully added with id: ' + this.lastID);
-            response.sendFile(__dirname + "/public/index.html");
-        }
+
+        db.run('INSERT INTO feed VALUES (NULL, ?, CURRENT_TIMESTAMP)', [request.body.user.feedChild], function(err2) {
+            if (err2) {
+                console.log("There's another error!" + err2.message);
+            } else {
+                console.log('Record successfully added with id: ' + this.lastID);
+            }
+
+            return response.redirect('/');
+        });
     });
 });
 
@@ -49,15 +50,16 @@ app.get('/right', function(req, res) {
     console.log(tempstats.lastAmountRight + '')
 })
 app.get('/feed', function(req, res) {
-    res.send(tempstats.feedChild + '')
-    console.log(tempstats.feedChild + '')
-})
-app.get('/l1', function(req, res) {
-            res.send(Math(tempstats.last1.left + tempstats.last1.left) console.log("Last 1: " + tempstats.last1 + 'ml')
-            })
+        res.send(tempstats.feedChild + '')
+        console.log(tempstats.feedChild + '')
+    })
+    // app.get('/l1', function(req, res) {
+    //             res.send(Math(tempstats.last1.left + tempstats.last1.left) 
+    //             console.log("Last 1: " + tempstats.last1 + 'ml')
+    //             })
 
-        // Server listen code
-        var port = 3000
-        app.listen(port, function() {
-            console.log('The server is listening on port ' + port)
-        })
+// Server listen code
+var port = 3000
+app.listen(port, function() {
+    console.log('The server is listening on port ' + port)
+})
