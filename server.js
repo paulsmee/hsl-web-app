@@ -21,7 +21,7 @@ app.get("/history", function(request, response) {
     })
     // Add last expressed amount record
 app.post('/', function(request, response) {
-    db.run('INSERT INTO milk VALUES (NULL, ?, ?, CURRENT_DATE, CURRENT_TIME)', [request.body.user.leftBreast, request.body.user.rightBreast], function(err) {
+    db.run('INSERT INTO milk VALUES (NULL, ?, ?, CURRENT_TIMESTAMP)', [request.body.user.leftBreast, request.body.user.rightBreast], function(err) {
         if (err) {
             console.log("There's another error!" + err.message)
         } else {
@@ -78,29 +78,25 @@ app.get('/l5', function(req, res) {
 
 // Time for last values
 app.get('/l1t', function(req, res) {
-    var date = new Date()
-    console.log("today" + date.toLocaleDateString() + ".")
-    var l1TValue = tempstats.last1.date
-    console.log(l1TValue)
+    var l1TValue = new Date(tempstats.last1.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
     res.send(l1TValue + '')
 })
-
-// app.get('/l2', function(req, res) {
-//     var l2Value = parseInt(tempstats.last2.left) + parseInt(tempstats.last2.right)
-//     res.send(l2Value + '')
-// })
-// app.get('/l3', function(req, res) {
-//     var l3Value = parseInt(tempstats.last3.left) + parseInt(tempstats.last3.right)
-//     res.send(l3Value + '')
-// })
-// app.get('/l4', function(req, res) {
-//     var l4Value = parseInt(tempstats.last4.left) + parseInt(tempstats.last4.right)
-//     res.send(l4Value + '')
-// })
-// app.get('/l5', function(req, res) {
-//     var l5Value = parseInt(tempstats.last5.left) + parseInt(tempstats.last5.right)
-//     res.send(l5Value + '')
-// })
+app.get('/l2t', function(req, res) {
+    var l2TValue = new Date(tempstats.last2.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
+    res.send(l2TValue + '')
+})
+app.get('/l3t', function(req, res) {
+    var l3TValue = new Date(tempstats.last3.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
+    res.send(l3TValue + '')
+})
+app.get('/l4t', function(req, res) {
+    var l4TValue = new Date(tempstats.last4.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
+    res.send(l4TValue + '')
+})
+app.get('/l5t', function(req, res) {
+    var l5TValue = new Date(tempstats.last5.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
+    res.send(l5TValue + '')
+})
 
 // Server listen code
 var port = 3000

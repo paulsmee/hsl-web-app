@@ -47,36 +47,36 @@
         <div class="column middle">
             <div class="container">
                 <div class="firsttime">.
-                    <div class="skills" id="l1" style="float: right">temp</div>
-                    <div class="skills" style="float: left">4:00am</div>
+                    <div class="skills" id="l1" style="float: right">.</div>
+                    <div class="skills" id="l1t" style="float: left">.</div>
                 </div>
             </div>
             <br>
             <div class="container">
                 <div class="secondtime">.
-                    <div class="skills" style="float: left">8:25am</div>
-                    <div class="skills" id="l2" style="float: right">temp</div>
+                    <div class="skills" id="l2" style="float: right">.</div>
+                    <div class="skills" id="l2t" style="float: left">.</div>
                 </div>
             </div>
             <br>
             <div class="container">
                 <div class="thirdtime">.
-                    <div class="skills" style="float: left">11:35am</div>
-                    <div class="skills" id="l3" style="float: right">temp</div>
+                    <div class="skills" id="l3" style="float: right">.</div>
+                    <div class="skills" id="l3t" style="float: left">.</div>
                 </div>
             </div>
             <br>
             <div class="container">
                 <div class="fourthtime">.
-                    <div class="skills" style="float: left">4:30pm</div>
-                    <div class="skills" id="l4" style="float: right">temp</div>
+                    <div class="skills" id="l4" style="float: right">.</div>
+                    <div class="skills" id="l4t" style="float: left">.</div>
                 </div>
             </div>
             <br>
             <div class="container">
                 <div class="fifthtime">.
-                    <div class="skills" style="float: left">9:10pm</div>
-                    <div class="skills" id="l5" style="float: right">temp</div>
+                    <div class="skills" id="l5" style="float: right">.</div>
+                    <div class="skills" id="l5t" style="float: left">.</div>
                 </div>
             </div>
 
@@ -96,10 +96,28 @@
                     console.log('uh oh')
                 })
         }
+        window.getLast1TFromDatabase = function() {
+            $.get('/l1t')
+                .done(function(value) {
+                    document.getElementById("l1t").innerHTML = value + ''
+                })
+                .catch(function(err) {
+                    console.log('uh oh')
+                })
+        }
         window.getLast2FromDatabase = function() {
             $.get('/l2')
                 .done(function(value) {
                     document.getElementById("l2").innerHTML = value + '' + "ml"
+                })
+                .catch(function(err) {
+                    console.log('uh oh')
+                })
+        }
+        window.getLast2TFromDatabase = function() {
+            $.get('/l2t')
+                .done(function(value) {
+                    document.getElementById("l2t").innerHTML = value + ''
                 })
                 .catch(function(err) {
                     console.log('uh oh')
@@ -114,10 +132,28 @@
                     console.log('uh oh')
                 })
         }
+        window.getLast3TFromDatabase = function() {
+            $.get('/l3t')
+                .done(function(value) {
+                    document.getElementById("l3t").innerHTML = value + ''
+                })
+                .catch(function(err) {
+                    console.log('uh oh')
+                })
+        }
         window.getLast4FromDatabase = function() {
             $.get('/l4')
                 .done(function(value) {
                     document.getElementById("l4").innerHTML = value + '' + "ml"
+                })
+                .catch(function(err) {
+                    console.log('uh oh')
+                })
+        }
+        window.getLast4TFromDatabase = function() {
+            $.get('/l4t')
+                .done(function(value) {
+                    document.getElementById("l4t").innerHTML = value + ''
                 })
                 .catch(function(err) {
                     console.log('uh oh')
@@ -132,13 +168,27 @@
                     console.log('uh oh')
                 })
         }
+        window.getLast5TFromDatabase = function() {
+            $.get('/l5t')
+                .done(function(value) {
+                    document.getElementById("l5t").innerHTML = value + ''
+                })
+                .catch(function(err) {
+                    console.log('uh oh')
+                })
+        }
     </script>
     <script>
         getLast1FromDatabase()
+        getLast1TFromDatabase()
         getLast2FromDatabase()
+        getLast2TFromDatabase()
         getLast3FromDatabase()
+        getLast3TFromDatabase()
         getLast4FromDatabase()
+        getLast4TFromDatabase()
         getLast5FromDatabase()
+        getLast5TFromDatabase()
     </script>
 
 

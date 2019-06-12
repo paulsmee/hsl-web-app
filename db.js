@@ -55,7 +55,7 @@ setInterval(function() {
 
 // Get the second last row to use for Graph data
 setInterval(function() {
-    db.each('SELECT * FROM (SELECT * FROM milk ORDER BY date DESC LIMIT 2) AS date ORDER BY date LIMIT 2', function(err, row2) {
+    db.each('SELECT * FROM (SELECT * FROM milk ORDER BY date DESC LIMIT 2) AS date ORDER BY date LIMIT 1', function(err, row2) {
         if (err) {
             console.log('Oh no!' + err.message)
             return
@@ -67,7 +67,7 @@ setInterval(function() {
 
 // Get third last row to use for Graph data
 setInterval(function() {
-    db.each('SELECT * FROM (SELECT * FROM milk ORDER BY date DESC LIMIT 3) AS date ORDER BY date LIMIT 3', function(err, row) {
+    db.each('SELECT * FROM (SELECT * FROM milk ORDER BY date DESC LIMIT 3) AS date ORDER BY date LIMIT 1', function(err, row) {
         if (err) {
             console.log('Oh no!' + err.message)
             return
@@ -79,13 +79,13 @@ setInterval(function() {
 
 // Get fourth last row to use for Graph data
 setInterval(function() {
-    db.each('SELECT * FROM (SELECT * FROM milk ORDER BY date THEN time DESC LIMIT 4) AS time ORDER BY time LIMIT 1', function(err, row) {
+    db.each('SELECT * FROM (SELECT * FROM milk ORDER BY date DESC LIMIT 4) AS date ORDER BY date LIMIT 1', function(err, row) {
         if (err) {
             console.log('Oh no!' + err.message)
             return
         }
         tempstats.last4 = row
-        console.log(row)
+            // console.log(row)
     })
 }, 6000)
 
