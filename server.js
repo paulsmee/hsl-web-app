@@ -56,46 +56,90 @@ app.get('/feed', function(req, res) {
 
 // Data for most recent graph
 app.get('/l1', function(req, res) {
-    var l1Value = parseInt(tempstats.last1.left) + parseInt(tempstats.last1.right)
-    res.send(l1Value + '')
+    var value = parseInt(tempstats.last1.left) + parseInt(tempstats.last1.right)
+    res.send(value + '')
 })
 app.get('/l2', function(req, res) {
-    var l2Value = parseInt(tempstats.last2.left) + parseInt(tempstats.last2.right)
-    res.send(l2Value + '')
+    var value = parseInt(tempstats.last2.left) + parseInt(tempstats.last2.right)
+    res.send(value + '')
 })
 app.get('/l3', function(req, res) {
-    var l3Value = parseInt(tempstats.last3.left) + parseInt(tempstats.last3.right)
-    res.send(l3Value + '')
+    var value = parseInt(tempstats.last3.left) + parseInt(tempstats.last3.right)
+    res.send(value + '')
 })
 app.get('/l4', function(req, res) {
-    var l4Value = parseInt(tempstats.last4.left) + parseInt(tempstats.last4.right)
-    res.send(l4Value + '')
+    var value = parseInt(tempstats.last4.left) + parseInt(tempstats.last4.right)
+    res.send(value + '')
 })
 app.get('/l5', function(req, res) {
-    var l5Value = parseInt(tempstats.last5.left) + parseInt(tempstats.last5.right)
-    res.send(l5Value + '')
+    var value = parseInt(tempstats.last5.left) + parseInt(tempstats.last5.right)
+    res.send(value + '')
 })
 
 // Time for last values
 app.get('/l1t', function(req, res) {
-    var l1TValue = new Date(tempstats.last1.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
-    res.send(l1TValue + '')
+    var value = new Date(tempstats.last1.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
+    res.send(value + '')
 })
 app.get('/l2t', function(req, res) {
-    var l2TValue = new Date(tempstats.last2.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
-    res.send(l2TValue + '')
+    var value = new Date(tempstats.last2.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
+    res.send(value + '')
 })
 app.get('/l3t', function(req, res) {
-    var l3TValue = new Date(tempstats.last3.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
-    res.send(l3TValue + '')
+    var value = new Date(tempstats.last3.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
+    res.send(value + '')
 })
 app.get('/l4t', function(req, res) {
-    var l4TValue = new Date(tempstats.last4.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
-    res.send(l4TValue + '')
+    var value = new Date(tempstats.last4.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
+    res.send(value + '')
 })
 app.get('/l5t', function(req, res) {
-    var l5TValue = new Date(tempstats.last5.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
-    res.send(l5TValue + '')
+    var value = new Date(tempstats.last5.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
+    res.send(value + '')
+})
+
+// Data for Yesterday graph
+app.get('/l1y', function(req, res) {
+    var value = parseInt(tempstats.last1y.left) + parseInt(tempstats.last1y.right)
+    res.send(value + '')
+})
+app.get('/l2y', function(req, res) {
+    var value = parseInt(tempstats.last2y.left) + parseInt(tempstats.last2y.right)
+    res.send(value + '')
+})
+app.get('/l3y', function(req, res) {
+    var value = parseInt(tempstats.last3y.left) + parseInt(tempstats.last3y.right)
+    res.send(value + '')
+})
+app.get('/l4y', function(req, res) {
+    var value = parseInt(tempstats.last4y.left) + parseInt(tempstats.last4y.right)
+    res.send(value + '')
+})
+app.get('/l5y', function(req, res) {
+    var value = parseInt(tempstats.last5y.left) + parseInt(tempstats.last5y.right)
+    res.send(value + '')
+})
+
+// Time for last values
+app.get('/l1yt', function(req, res) {
+    var value = new Date(tempstats.last1y.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
+    res.send(value + '')
+})
+app.get('/l2yt', function(req, res) {
+    var value = new Date(tempstats.last2y.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
+    res.send(value + '')
+})
+app.get('/l3yt', function(req, res) {
+    var value = new Date(tempstats.last3y.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
+    res.send(value + '')
+})
+app.get('/l4yt', function(req, res) {
+    var value = new Date(tempstats.last4y.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
+    res.send(value + '')
+})
+app.get('/l5yt', function(req, res) {
+    var value = new Date(tempstats.last5y.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
+    res.send(value + '')
 })
 
 // Server listen code
