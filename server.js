@@ -54,7 +54,7 @@ app.get('/feed', function(req, res) {
     console.log(tempstats.feedChild + '')
 })
 
-// Data for most recent graph
+// Vaules for most recent volume
 app.get('/l1', function(req, res) {
     var value = parseInt(tempstats.last1.left) + parseInt(tempstats.last1.right)
     res.send(value + '')
@@ -76,7 +76,7 @@ app.get('/l5', function(req, res) {
     res.send(value + '')
 })
 
-// Time for last values
+// Values for Last time
 app.get('/l1t', function(req, res) {
     var value = new Date(tempstats.last1.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
     res.send(value + '')
@@ -98,7 +98,7 @@ app.get('/l5t', function(req, res) {
     res.send(value + '')
 })
 
-// Data for Yesterday graph
+// Values for Yesterday volume
 app.get('/l1y', function(req, res) {
     var value = parseInt(tempstats.last1y.left) + parseInt(tempstats.last1y.right)
     res.send(value + '')
@@ -120,7 +120,7 @@ app.get('/l5y', function(req, res) {
     res.send(value + '')
 })
 
-// Time for last values
+// Values for Yesterday time
 app.get('/l1yt', function(req, res) {
     var value = new Date(tempstats.last1y.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
     res.send(value + '')

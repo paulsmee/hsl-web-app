@@ -43,25 +43,23 @@ setInterval(function() {
 
 // Get the last row to use for Graph data
 setInterval(function() {
-    db.each('SELECT * FROM (SELECT * FROM milk ORDER BY date DESC LIMIT 1) AS date ORDER BY date LIMIT 1', function(err, row1) {
+    db.each('SELECT * FROM (SELECT * FROM milk ORDER BY date DESC LIMIT 1) AS date ORDER BY date LIMIT 1', function(err, row) {
         if (err) {
             console.log('Oh no!' + err.message)
             return
         }
-        tempstats.last1 = row1
-            // console.log(row1)
+        tempstats.last1 = row
     })
 }, 6000)
 
 // Get the second last row to use for Graph data
 setInterval(function() {
-    db.each('SELECT * FROM (SELECT * FROM milk ORDER BY date DESC LIMIT 2) AS date ORDER BY date LIMIT 1', function(err, row2) {
+    db.each('SELECT * FROM (SELECT * FROM milk ORDER BY date DESC LIMIT 2) AS date ORDER BY date LIMIT 1', function(err, row) {
         if (err) {
             console.log('Oh no!' + err.message)
             return
         }
-        tempstats.last2 = row2
-            // console.log(row2)
+        tempstats.last2 = row
     })
 }, 6000)
 
@@ -73,7 +71,6 @@ setInterval(function() {
             return
         }
         tempstats.last3 = row
-            // console.log(row)
     })
 }, 6000)
 
@@ -85,7 +82,6 @@ setInterval(function() {
             return
         }
         tempstats.last4 = row
-            // console.log(row)
     })
 }, 6000)
 
@@ -102,25 +98,23 @@ setInterval(function() {
 
 // Get the last row to use for Yesterday Graph data
 setInterval(function() {
-    db.each('SELECT * FROM (SELECT * FROM milk ORDER BY date DESC LIMIT 6) AS date ORDER BY date LIMIT 1', function(err, row1) {
+    db.each('SELECT * FROM (SELECT * FROM milk ORDER BY date DESC LIMIT 6) AS date ORDER BY date LIMIT 1', function(err, row) {
         if (err) {
             console.log('Oh no!' + err.message)
             return
         }
-        tempstats.last1y = row1
-            // console.log(row1)
+        tempstats.last1y = row
     })
 }, 6000)
 
 // Get the second last row to use for Yesterday Graph data
 setInterval(function() {
-    db.each('SELECT * FROM (SELECT * FROM milk ORDER BY date DESC LIMIT 7) AS date ORDER BY date LIMIT 1', function(err, row2) {
+    db.each('SELECT * FROM (SELECT * FROM milk ORDER BY date DESC LIMIT 7) AS date ORDER BY date LIMIT 1', function(err, row) {
         if (err) {
             console.log('Oh no!' + err.message)
             return
         }
-        tempstats.last2y = row2
-            // console.log(row2)
+        tempstats.last2y = row
     })
 }, 6000)
 
@@ -132,7 +126,6 @@ setInterval(function() {
             return
         }
         tempstats.last3y = row
-            // console.log(row)
     })
 }, 6000)
 
@@ -144,7 +137,6 @@ setInterval(function() {
             return
         }
         tempstats.last4y = row
-            // console.log(row)
     })
 }, 6000)
 
