@@ -150,4 +150,15 @@ setInterval(function() {
     })
 }, 6000)
 
+// Get fourth last row to use for Yesterday Graph data
+setInterval(function() {
+    db.each('SELECT COUNT(*) AS date FROM milk WHERE dateonly = CURRENT_DATE', function(err, row) {
+        if (err) {
+            console.log('Oh no!' + err.message)
+            return
+        }
+        tempstats.countLast = row.date
+    })
+}, 6000)
+
 module.exports = tempstats

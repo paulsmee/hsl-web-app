@@ -42,11 +42,16 @@
     </form>
     <script>
         function validate() {
-            if (document.getElementsByName("user[leftBreast]")[0].value == "" || document.getElementsByName("user[rightBreast]")[0].value == "" || document.getElementsByName("user[feedChild]")[0].value == "") {
-                alert("Please complete all fields. Only numbers from 0 to 255 can be accepted.")
+            if (document.getElementsByName("remain")[0].value == true) {
+                alert("No more milk today")
             } else {
-                var form = document.getElementsByName("form")[0]
-                form.submit()
+                alert("More milk!")
+                    // if (document.getElementsByName("user[leftBreast]")[0].value == "" || document.getElementsByName("user[rightBreast]")[0].value == "" || document.getElementsByName("user[feedChild]")[0].value == "") {
+                    //     alert("Please complete all fields. Only numbers from 0 to 255 can be accepted.")
+                    // } else {
+                    //     var form = document.getElementsByName("form")[0]
+                    //     form.submit()
+                    // }
             }
         }
     </script>
@@ -54,6 +59,19 @@
         function clearForm() {
             var form = document.getElementsByName("form")[0]
             form.reset()
+        }
+    </script>
+
+    <div id="remaining"><b name="remain" id="r1">.</b></div>
+    <script>
+        window.getCountFromDatabase = function() {
+            $.get('/remaining')
+                .done(function(value) {
+                    document.getElementById("r1").innerHTML = value + ''
+                })
+                .catch(function(err) {
+                    console.log('uh oh')
+                })
         }
     </script>
     <br>
@@ -106,6 +124,8 @@
         getLeftFromDatabase()
         getRightFromDatabase()
         getFeedFromDatabase()
+        getCountFromDatabase()
+        setInterval(getCountFromDatabase, 6000)
         setInterval(getLeftFromDatabase, 6000)
         setInterval(getRightFromDatabase, 6000)
         setInterval(getFeedFromDatabase, 6000)

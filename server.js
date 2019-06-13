@@ -23,7 +23,7 @@ app.get("/history", function(request, response) {
     })
     // Add last expressed amount record
 app.post('/', function(request, response) {
-    db.run('INSERT INTO milk VALUES (NULL, ?, ?, CURRENT_TIMESTAMP)', [request.body.user.leftBreast, request.body.user.rightBreast], function(err) {
+    db.run('INSERT INTO milk VALUES (NULL, ?, ?, CURRENT_TIMESTAMP, CURRENT_DATE)', [request.body.user.leftBreast, request.body.user.rightBreast], function(err) {
         if (err) {
             console.log("There's another error!" + err.message)
         } else {
@@ -54,6 +54,15 @@ app.get('/right', function(req, res) {
 app.get('/feed', function(req, res) {
     res.send(tempstats.feedChild + '')
     console.log(tempstats.feedChild + '')
+})
+app.get('/remaining', function(req, res) {
+    if ((5 - tempstats.countLast) <= 0) {
+        res.send('true')
+        console.log('Not Limit')
+    } else {
+        res.send('false')
+        console.log('Limit Reached')
+    }
 })
 
 // Vaules for most recent volume
