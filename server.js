@@ -1,3 +1,5 @@
+'use strict'
+
 var express = require('express')
 var tempstats = require('./db.js')
 var path = require('path')

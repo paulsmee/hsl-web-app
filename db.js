@@ -1,7 +1,6 @@
 'use strict'
 
 var sqlite3 = require('sqlite3')
-    // var db = new sqlite3.Database('web-app.db')
 let db = new sqlite3.Database('web-app.db', (err) => {
     if (err) {
         return console.error(err.message)
