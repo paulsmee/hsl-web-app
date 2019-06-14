@@ -158,6 +158,7 @@ setInterval(function() {
             return
         }
         tempstats.countLast = row.date
+        console.log(row.date)
     })
 }, 6000)
 

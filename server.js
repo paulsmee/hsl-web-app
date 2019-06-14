@@ -58,10 +58,10 @@ app.get('/feed', function(req, res) {
 app.get('/remaining', function(req, res) {
     if ((5 - tempstats.countLast) <= 0) {
         res.send('true')
-        console.log('Not Limit')
+        console.log('Limit Reached ' + (5 - tempstats.countLast) + tempstats.countLast)
     } else {
         res.send('false')
-        console.log('Limit Reached')
+        console.log('you have ' + (5 - tempstats.countLast) + ' times left to express' + tempstats.countLast)
     }
 })
 

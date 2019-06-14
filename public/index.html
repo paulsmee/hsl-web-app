@@ -40,29 +40,9 @@
         <input autocomplete="off" type="number" value="0" name="user[feedChild]">
         <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;" />
     </form>
-    <script>
-        function validate() {
-            if (document.getElementsByName("remain")[0].value == true) {
-                alert("No more milk today")
-            } else {
-                alert("More milk!")
-                    // if (document.getElementsByName("user[leftBreast]")[0].value == "" || document.getElementsByName("user[rightBreast]")[0].value == "" || document.getElementsByName("user[feedChild]")[0].value == "") {
-                    //     alert("Please complete all fields. Only numbers from 0 to 255 can be accepted.")
-                    // } else {
-                    //     var form = document.getElementsByName("form")[0]
-                    //     form.submit()
-                    // }
-            }
-        }
-    </script>
-    <script>
-        function clearForm() {
-            var form = document.getElementsByName("form")[0]
-            form.reset()
-        }
-    </script>
 
-    <div id="remaining"><b name="remain" id="r1">.</b></div>
+    <br>
+    <div id="remaining"><b name="remain" id="r1">Hello</b></div>
     <script>
         window.getCountFromDatabase = function() {
             $.get('/remaining')
@@ -74,6 +54,35 @@
                 })
         }
     </script>
+    <script>
+        getCountFromDatabase()
+    </script>
+
+    <script>
+        function validate() {
+            if (document.getElementById("r1").innerHTML === 'true') {
+                console.log("YAY!")
+                alert("No further expressing today permitted!")
+            } else {
+                console.log(document.getElementById("r1").innerHTML)
+                if (document.getElementsByName("user[leftBreast]")[0].value == "" || document.getElementsByName("user[rightBreast]")[0].value == "" || document.getElementsByName("user[feedChild]")[0].value == "") {
+                    alert("Please complete all fields. Only numbers from 0 to 255 can be accepted.")
+                } else {
+                    var form = document.getElementsByName("form")[0]
+                    form.submit()
+                }
+            }
+        }
+    </script>
+
+    <script>
+        function clearForm() {
+            var form = document.getElementsByName("form")[0]
+            form.reset()
+        }
+    </script>
+
+
     <br>
     <div id="lastValue">
         <p id=heading>Last Entries</p>
@@ -124,7 +133,6 @@
         getLeftFromDatabase()
         getRightFromDatabase()
         getFeedFromDatabase()
-        getCountFromDatabase()
         setInterval(getCountFromDatabase, 6000)
         setInterval(getLeftFromDatabase, 6000)
         setInterval(getRightFromDatabase, 6000)
