@@ -45,15 +45,12 @@ app.post('/', function(request, response) {
 // SQL data interaction functions from db.js .
 app.get('/left', function(req, res) {
     res.send(tempstats.lastAmountLeft + '')
-    console.log(tempstats.lastAmountLeft + '')
 })
 app.get('/right', function(req, res) {
     res.send(tempstats.lastAmountRight + '')
-    console.log(tempstats.lastAmountRight + '')
 })
 app.get('/feed', function(req, res) {
     res.send(tempstats.feedChild + '')
-    console.log(tempstats.feedChild + '')
 })
 app.get('/remaining', function(req, res) {
     if ((5 - tempstats.countLast) <= 0) {
@@ -62,6 +59,15 @@ app.get('/remaining', function(req, res) {
     } else {
         res.send('false')
         console.log('you have ' + (5 - tempstats.countLast) + ' times left to express' + tempstats.countLast)
+    }
+})
+app.get('/remain', function(req, res) {
+    if ((5 - tempstats.countLast) <= 0) {
+        res.send((5 - tempstats.countLast) + '')
+        console.log('Limit Reached ' + (5 - tempstats.countLast))
+    } else {
+        res.send((5 - tempstats.countLast) + '')
+        console.log('Remainig ' + (5 - tempstats.countLast))
     }
 })
 
@@ -158,3 +164,6 @@ var port = 3000
 app.listen(port, function() {
     console.log('The server is listening on port ' + port)
 })
+setInterval(function() {
+    console.log('Server is now online and listening on port 3000')
+}, 6500)

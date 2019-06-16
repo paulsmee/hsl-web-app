@@ -44,12 +44,12 @@
     </form>
 
     <br>
-    <div id="remaining"><b name="remain" id="r1">Hello</b></div>
+    <div id="remaining"><b name="remain" id="r1">.</b></div>
     <script>
         window.getCountFromDatabase = function() {
-            $.get('/remaining')
+            $.get('/remain')
                 .done(function(value) {
-                    document.getElementById("r1").innerHTML = value + ''
+                    document.getElementById("r1").innerHTML = 'You have ' + value + ' times remaining.'
                 })
                 .catch(function(err) {
                     console.log('uh oh')
@@ -66,7 +66,7 @@
                 console.log("YAY!")
                 alert("No further expressing today permitted!")
             } else {
-                console.log(document.getElementById("r1").innerHTML)
+                // console.log(document.getElementById("r1").innerHTML)
                 if (document.getElementsByName("user[leftBreast]")[0].value == "" || document.getElementsByName("user[rightBreast]")[0].value == "" || document.getElementsByName("user[feedChild]")[0].value == "") {
                     alert("Please complete all fields. Only numbers from 0 to 255 can be accepted.")
                 } else {
