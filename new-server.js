@@ -160,11 +160,13 @@ app.get('/l5yt', function(req, res) {
     res.send(value + '')
 })
 
+app.get('/week', function(req, res) {
+    res.send(dbstats.weekData())
+})
+
+
 // Server listen code
 var port = 3000
 app.listen(port, function() {
     console.log('The server is listening on port ' + port)
 })
-setInterval(function() {
-    // console.log(dbstats)
-}, 6500)

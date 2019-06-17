@@ -97,22 +97,19 @@ setInterval(function() {
 }, 6000)
 
 // Get the last row to use for Yesterday Graph data
-// !!!!!!!!!!!!!!!!! THIS HAS BEEN MODIFIED POORLY
 setInterval(function() {
-    db.each('SELECT * FROM (SELECT * FROM (SELECT * FROM milk WHERE dateonly = DATE("now", "-2 day"))AS day ORDER BY date DESC LIMIT 1) AS date ORDER BY date LIMIT 1', function(err, row) {
+    db.each('SELECT * FROM (SELECT * FROM (SELECT * FROM milk WHERE dateonly = DATE("now", "-1 day"))AS day ORDER BY date DESC LIMIT 6) AS date ORDER BY date LIMIT 1', function(err, row) {
         if (err) {
             console.log('Oh no!' + err.message)
             return
-        } else {
-            console.log("i work")
         }
-        console.log("i work")
+        tempstats.last1y = row
     })
 }, 6000)
 
 // Get the second last row to use for Yesterday Graph data
 setInterval(function() {
-    db.each('SELECT * FROM (SELECT * FROM (SELECT * FROM milk WHERE dateonly = DATE("now", "-1 day"))AS day ORDER BY date DESC LIMIT 2) AS date ORDER BY date LIMIT 1', function(err, row) {
+    db.each('SELECT * FROM (SELECT * FROM (SELECT * FROM milk WHERE dateonly = DATE("now", "-1 day"))AS day ORDER BY date DESC LIMIT 7) AS date ORDER BY date LIMIT 1', function(err, row) {
         if (err) {
             console.log('Oh no!' + err.message)
             return
@@ -154,7 +151,7 @@ setInterval(function() {
     })
 }, 6000)
 
-// Get date for counting purposes
+// Get fourth last row to use for Yesterday Graph data
 setInterval(function() {
     db.each('SELECT COUNT(*) AS date FROM milk WHERE dateonly = CURRENT_DATE', function(err, row) {
         if (err) {
