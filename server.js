@@ -54,23 +54,23 @@ app.get('/feed', function(req, res) {
     res.send(tempstats.feedChild + '')
 })
 app.get('/remaining', function(req, res) {
-    if ((5 - tempstats.countLast) <= 0) {
-        res.send('true')
-        console.log('Limit Reached ' + (5 - tempstats.countLast) + tempstats.countLast)
-    } else {
-        res.send('false')
-        console.log('you have ' + (5 - tempstats.countLast) + ' times left to express' + tempstats.countLast)
-    }
-})
-app.get('/remain', function(req, res) {
-    if ((5 - tempstats.countLast) <= 0) {
-        res.send((5 - tempstats.countLast) + '')
-        console.log('Limit Reached ' + (5 - tempstats.countLast))
-    } else {
-        res.send((5 - tempstats.countLast) + '')
-        console.log('Remainig ' + (5 - tempstats.countLast))
-    }
-})
+        if ((5 - tempstats.countLast) <= 0) {
+            res.send('true')
+            console.log('Limit Reached with ' + (5 - tempstats.countLast))
+        } else {
+            res.send('false')
+            console.log('you have ' + (5 - tempstats.countLast) + ' times left to express' + tempstats.countLast)
+        }
+    })
+    // app.get('/remain', function(req, res) {
+    //     if ((5 - tempstats.countLast) <= 0) {
+    //         res.send((5 - tempstats.countLast) + '')
+    //         console.log('Limit Reached ' + (5 - tempstats.countLast))
+    //     } else {
+    //         res.send((5 - tempstats.countLast) + '')
+    //         console.log('Remainig ' + (5 - tempstats.countLast))
+    //     }
+    // })
 
 // Vaules for most recent volume
 app.get('/l1', function(req, res) {

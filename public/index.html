@@ -44,12 +44,12 @@
     </form>
 
     <br>
-    <div id="remaining"><b name="remain" id="r1">.</b></div>
+    <div id="remaining">You have <b name="remain" id="r1">.</b> times remaining.</div>
     <script>
         window.getCountFromDatabase = function() {
-            $.get('/remain')
+            $.get('/remaining')
                 .done(function(value) {
-                    document.getElementById("r1").innerHTML = 'You have ' + value + ' times remaining.'
+                    document.getElementById("r1").innerHTML = value
                 })
                 .catch(function(err) {
                     console.log('uh oh')
