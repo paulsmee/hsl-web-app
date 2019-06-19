@@ -43,14 +43,15 @@ app.post('/', function(request, response) {
     })
 })
 
-app.get('/', function(req, res) {
-    console.log("I'm running")
-    res.send(tempstats.getLastAmount())
-})
+// app.get('/', function(req, res) {
+//     console.log("I'm running")
+//     res.send(tempstats.getLastAmount())
+// })
 
 // SQL data interaction functions from db.js .
 app.get('/left', function(req, res) {
-    res.send(tempstats.lastValues)
+    res.send(tempstats.lastValues.left + '')
+    console.log(tempstats.lastValues)
 
 })
 app.get('/right', function(req, res) {

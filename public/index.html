@@ -101,7 +101,7 @@
         window.getLeftFromDatabase = function() {
             $.get('/left')
                 .done(function(value) {
-                    document.getElementById("p1").innerHTML = value.left + '' + "ml"
+                    document.getElementById("p1").innerHTML = value + '' + "ml"
                 })
                 .catch(function(err) {
                     console.log('uh oh')
