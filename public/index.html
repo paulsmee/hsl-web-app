@@ -100,8 +100,8 @@
     <script>
         window.getLeftFromDatabase = function() {
             $.get('/left')
-                .done(function(leftvalue) {
-                    document.getElementById("p1").innerHTML = leftvalue + '' + "ml"
+                .done(function(value) {
+                    document.getElementById("p1").innerHTML = value.left + '' + "ml"
                 })
                 .catch(function(err) {
                     console.log('uh oh')
@@ -135,10 +135,6 @@
         getLeftFromDatabase()
         getRightFromDatabase()
         getFeedFromDatabase()
-        setInterval(getCountFromDatabase, 6000)
-        setInterval(getLeftFromDatabase, 6000)
-        setInterval(getRightFromDatabase, 6000)
-        setInterval(getFeedFromDatabase, 6000)
     </script>
 
     <!-- Add a counter of number of entries per day - max 5 -->

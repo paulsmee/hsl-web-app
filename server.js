@@ -20,7 +20,7 @@ app.get("/", function(request, response) {
 })
 
 app.get("/history", function(request, response) {
-        response.sendFile(__dirname + "/public/pages/history.html", {})
+        response.sendFile(publicPath + "/pages/history.html", {})
     })
     // Add last expressed amount record
 app.post('/', function(request, response) {
@@ -43,9 +43,15 @@ app.post('/', function(request, response) {
     })
 })
 
+app.get('/', function(req, res) {
+    console.log("I'm running")
+    res.send(tempstats.getLastAmount())
+})
+
 // SQL data interaction functions from db.js .
 app.get('/left', function(req, res) {
-    res.send(tempstats.lastAmountLeft + '')
+    res.send(tempstats.lastValues)
+
 })
 app.get('/right', function(req, res) {
     res.send(tempstats.lastAmountRight + '')
@@ -165,6 +171,3 @@ var port = 3000
 app.listen(port, function() {
     console.log('The server is listening on port ' + port)
 })
-setInterval(function() {
-    // console.log(dbstats)
-}, 6500)
