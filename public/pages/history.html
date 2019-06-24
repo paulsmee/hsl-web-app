@@ -195,42 +195,70 @@
     <p id=heading>Statistics</p>
 
     <div class="row">
-        <div class="column left">
-        </div>
+        <div class="column left"></div>
         <div class="column middle">
-            <div class="container">
-                <div class="firsttimey">.
-                    <div class="skills" id="l1y" style="float: right">.</div>
-                    <div class="skills" id="l1yt" style="float: left">No data</div>
+
+            <div class="centrecolumn centreleft">
+
+                <div class="stattxt"> Total Expressions:
+                    <div class="bignum" id="r1">.</div>
                 </div>
+                <script>
+                    window.getCountFromDatabase = function() {
+                        $.get('/remaining')
+                            .done(function(value) {
+                                document.getElementById("r1").innerHTML = value
+                            })
+                            .catch(function(err) {
+                                console.log('uh oh')
+                            })
+                    }
+                </script>
+                <script>
+                    getCountFromDatabase()
+                </script>
             </div>
-            <br>
-            <div class="container">
-                <div class="secondtimey">.
-                    <div class="skills" id="l2y" style="float: right">.</div>
-                    <div class="skills" id="l2yt" style="float: left">No data</div>
+
+            <div class="centrecolumn centremiddle">
+
+                <div class="stattxt"> Total Expressions:
+                    <div class="bignum" id="r1">.</div>
                 </div>
+
+                <script>
+                    window.getCountFromDatabase = function() {
+                        $.get('/remaining')
+                            .done(function(value) {
+                                document.getElementById("r1").innerHTML = value
+                            })
+                            .catch(function(err) {
+                                console.log('uh oh')
+                            })
+                    }
+                </script>
+                <script>
+                    getCountFromDatabase()
+                </script>
             </div>
-            <br>
-            <div class="container">
-                <div class="thirdtimey">.
-                    <div class="skills" id="l3y" style="float: right">.</div>
-                    <div class="skills" id="l3yt" style="float: left">No data</div>
+            <div class="centrecolumn centrelright">
+                <div class="stattxt"> Total Expressions:
+                    <div class="bignum" id="r1">.</div>
                 </div>
-            </div>
-            <br>
-            <div class="container">
-                <div class="fourthtimey">.
-                    <div class="skills" id="l4y" style="float: right">.</div>
-                    <div class="skills" id="l4yt" style="float: left">No data</div>
-                </div>
-            </div>
-            <br>
-            <div class="container">
-                <div class="fifthtimey">.
-                    <div class="skills" id="l5y" style="float: right">.</div>
-                    <div class="skills" id="l5yt" style="float: left">No data</div>
-                </div>
+
+                <script>
+                    window.getCountFromDatabase = function() {
+                        $.get('/remaining')
+                            .done(function(value) {
+                                document.getElementById("r1").innerHTML = value
+                            })
+                            .catch(function(err) {
+                                console.log('uh oh')
+                            })
+                    }
+                </script>
+                <script>
+                    getCountFromDatabase()
+                </script>
             </div>
 
         </div>

@@ -67,13 +67,7 @@ app.get('/feed', function(req, res) {
     res.send(dbStats.feedChild + '')
 })
 app.get('/remaining', function(req, res) {
-    if ((5 - dbStats.countLast) <= 0) {
-        res.send('true')
-        console.log('Limit Reached with ' + (5 - dbStats.countLast))
-    } else {
-        res.send('false')
-        console.log('you have ' + (5 - dbStats.countLast) + ' times left to express' + dbStats.countLast)
-    }
+    res.send(dbStats.countLast + '')
 })
 
 // Vaules for most recent volume
@@ -121,12 +115,9 @@ app.get('/l4t', function(req, res) {
 })
 app.get('/l5t', function(req, res) {
     var d = dayjs(dbStats.last5.date).add(10, 'hour')
-        // console.log(value)
     var value = new Date(d).toLocaleTimeString('en-AU', { hour: '2-digit', minute: '2-digit', hour12: true })
     res.send(value + '')
-        // console.log()
 })
 
 // Server listen code
-var port = 3000
-app.listen(port, function() {})
+app.listen(3000, function() {})

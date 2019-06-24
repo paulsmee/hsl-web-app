@@ -115,6 +115,7 @@ const dbStats = {
                             return
                         }
                         dbStats.countLast = row.date
+                        console.log(row)
                     },
                     // To handle blank data.
                     function(err, rows) {

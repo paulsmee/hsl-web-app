@@ -13,7 +13,7 @@
 }
 
 .left {
-    width: 2%;
+    width: 5%;
 }
 
 .right {
@@ -23,6 +23,41 @@
 
 .middle {
     width: 90%;
+}
+
+.centrecolumn {
+    float: left;
+    /* padding: 10px; */
+    /* height: 145px */
+    /* Should be removed. Only for demonstration */
+}
+
+.centreleft {
+    width: 33%;
+}
+
+.centreright {
+    width: 33%;
+    float: right;
+}
+
+.centremiddle {
+    width: 33%;
+}
+
+
+/* Stats parameters */
+
+.bignum {
+    text-align: center;
+    font-size: 80%;
+    font-weight: bold;
+}
+
+.stattxt {
+    text-align: center;
+    font-size: 65%;
+    font-weight: bold;
 }
 
 
