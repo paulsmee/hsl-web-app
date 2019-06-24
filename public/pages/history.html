@@ -39,7 +39,7 @@
     <div style="margin: 0 auto; width: 100px;">Centered Text</div> -->
     <!-- Wrap the below in a container and give a light colored background
     also change all bars to be the same color and not bright colors, make it suit -->
-    <p id=heading>Today</p>
+    <p id=heading>Last 5 Entries</p>
 
     <div class="row">
         <div class="column left">
@@ -192,7 +192,7 @@
     </script>
 
 
-    <p id=heading>Yesterday</p>
+    <p id=heading>Statistics</p>
 
     <div class="row">
         <div class="column left">
@@ -247,99 +247,9 @@
                     console.log('uh oh')
                 })
         }
-        window.getLast1YTFromDatabase = function() {
-            $.get('/l1yt')
-                .done(function(value) {
-                    document.getElementById("l1yt").innerHTML = value + ''
-                })
-                .catch(function(err) {
-                    console.log('uh oh')
-                })
-        }
-        window.getLast2YFromDatabase = function() {
-            $.get('/l2y')
-                .done(function(value) {
-                    document.getElementById("l2y").innerHTML = value + '' + "ml"
-                })
-                .catch(function(err) {
-                    console.log('uh oh')
-                })
-        }
-        window.getLast2YTFromDatabase = function() {
-            $.get('/l2yt')
-                .done(function(value) {
-                    document.getElementById("l2yt").innerHTML = value + ''
-                })
-                .catch(function(err) {
-                    console.log('uh oh')
-                })
-        }
-        window.getLast3YFromDatabase = function() {
-            $.get('/l3y')
-                .done(function(value) {
-                    document.getElementById("l3y").innerHTML = value + '' + "ml"
-                })
-                .catch(function(err) {
-                    console.log('uh oh')
-                })
-        }
-        window.getLast3YTFromDatabase = function() {
-            $.get('/l3yt')
-                .done(function(value) {
-                    document.getElementById("l3yt").innerHTML = value + ''
-                })
-                .catch(function(err) {
-                    console.log('uh oh')
-                })
-        }
-        window.getLast4YFromDatabase = function() {
-            $.get('/l4y')
-                .done(function(value) {
-                    document.getElementById("l4y").innerHTML = value + '' + "ml"
-                })
-                .catch(function(err) {
-                    console.log('uh oh')
-                })
-        }
-        window.getLast4YTFromDatabase = function() {
-            $.get('/l4yt')
-                .done(function(value) {
-                    document.getElementById("l4yt").innerHTML = value + ''
-                })
-                .catch(function(err) {
-                    console.log('uh oh')
-                })
-        }
-        window.getLast5YFromDatabase = function() {
-            $.get('/l5y')
-                .done(function(value) {
-                    document.getElementById("l5y").innerHTML = value + '' + "ml"
-                })
-                .catch(function(err) {
-                    console.log('uh oh')
-                })
-        }
-        window.getLast5YTFromDatabase = function() {
-            $.get('/l5yt')
-                .done(function(value) {
-                    document.getElementById("l5yt").innerHTML = value + ''
-                })
-                .catch(function(err) {
-                    console.log('uh oh')
-                })
-        }
     </script>
     <script>
         getLast1YFromDatabase()
-        getLast1YTFromDatabase()
-        getLast2YFromDatabase()
-        getLast2YTFromDatabase()
-        getLast3YFromDatabase()
-        getLast3YTFromDatabase()
-        getLast4YFromDatabase()
-        getLast4YTFromDatabase()
-        getLast5YFromDatabase()
-        getLast5YTFromDatabase()
     </script>
 
     <p id="lineabove"></p>

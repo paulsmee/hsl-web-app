@@ -8,217 +8,143 @@ let db = new sqlite3.Database('web-app.db', (err) => {
     console.log('Connected to the web-app.db SQlite database.')
 })
 
-const tempstats = {}
+setTimeout(() => {
+    console.log('Running All Functions')
+}, 500);
 
-setInterval(function() {
-    db.get('SELECT * FROM milk WHERE date order by date desc limit 1', function(err, row) {
-        if (err) {
-            console.log('Oh no!' + err.message)
-            return
+const dbStats = {
+
+        getData: function callAllFunctions() {
+            db.serialize(function() {
+                db.get('SELECT * FROM milk WHERE date order by date desc limit 1', function(err, row) {
+                    if (err) {
+                        console.log('Oh no!' + err.message)
+                        return
+                    }
+                    dbStats.lastValues = row
+                })
+
+                db.get('SELECT * FROM feed WHERE date order by date desc limit 1', function(err, row) {
+                    if (err) {
+                        console.log('Oh no!' + err.message)
+                        return
+                    }
+                    dbStats.feedChild = row.minutes
+                })
+
+                // Obtain First entry for Graph Data
+                db.each('SELECT * FROM (SELECT * FROM milk AS date ORDER BY date DESC LIMIT 1) AS date ORDER BY date LIMIT 1', function(err, row) {
+                        if (err) {
+                            console.log('Oh no!' + err.message)
+                            return
+                        }
+                        dbStats.last1 = row
+                    },
+                    // To handle blank data.
+                    function(err, rows) {
+                        if (rows == 0) {
+                            dbStats.last1 = { id: 0, left: 0, right: 0, date: 0, dateonly: 0 }
+                        }
+                    })
+
+                // Obtain Second entry for Graph Data
+                db.each('SELECT * FROM (SELECT * FROM milk AS date ORDER BY date DESC LIMIT 2) AS date ORDER BY date LIMIT 1', function(err, row) {
+                        if (err) {
+                            console.log('Oh no!' + err.message)
+                            return
+                        }
+                        dbStats.last2 = row
+                    },
+                    // To handle blank data.
+                    function(err, rows) {
+                        if (rows == 0) {
+                            dbStats.last2 = { id: 0, left: 0, right: 0, date: 0, dateonly: 0 }
+                        }
+                    })
+
+                // Obtain Third entry for Graph Data
+                db.each('SELECT * FROM (SELECT * FROM milk AS date ORDER BY date DESC LIMIT 3) AS date ORDER BY date LIMIT 1', function(err, row) {
+                        if (err) {
+                            console.log('Oh no!' + err.message)
+                            return
+                        }
+                        dbStats.last3 = row
+                    },
+                    // To handle blank data.
+                    function(err, rows) {
+                        if (rows == 0) {
+                            dbStats.last3 = { id: 0, left: 0, right: 0, date: 0, dateonly: 0 }
+                        }
+                    })
+
+                // Obtain Fourth entry for Graph Data
+                db.each('SELECT * FROM (SELECT * FROM milk AS date ORDER BY date DESC LIMIT 4) AS date ORDER BY date LIMIT 1', function(err, row) {
+                        if (err) {
+                            console.log('Oh no!' + err.message)
+                            return
+                        }
+                        dbStats.last4 = row
+                    },
+                    // To handle blank data.
+                    function(err, rows) {
+                        if (rows == 0) {
+                            dbStats.last4 = { id: 0, left: 2, right: 0, date: 0, dateonly: 0 }
+                        }
+                    })
+
+                // Obtain Fifth entry for Graph Data
+                db.each('SELECT * FROM (SELECT * FROM milk AS date ORDER BY date DESC LIMIT 5) AS date ORDER BY date LIMIT 1',
+                    function(err, row) {
+                        if (err) {
+                            console.log('Oh no!' + err.message)
+                            return
+                        }
+                        dbStats.last5 = row
+                    },
+                    // To handle blank data.
+                    function(err, rows) {
+                        if (rows == 0) {
+                            dbStats.last5 = { id: 0, left: 0, right: 0, date: 0, dateonly: 0 }
+                        }
+                    })
+
+                // Obtain total number of express entries
+                db.each('SELECT COUNT(*) AS date FROM milk', function(err, row) {
+                        if (err) {
+                            console.log('Oh no!' + err.message)
+                            return
+                        }
+                        dbStats.countLast = row.date
+                    },
+                    // To handle blank data.
+                    function(err, rows) {
+                        if (rows == 0) {
+                            dbStats.countLast = { date: 100 }
+                        }
+                    })
+            })
         }
-        tempstats.lastValues = row
-        console.log(row)
-    })
-}, 6000)
+    }
+    // The blank date will show as 10:00AM
+setTimeout(() => {
+    console.log('.')
+}, 1000);
+setTimeout(() => {
+    console.log('.')
+}, 2000);
+setTimeout(() => {
+    console.log('.')
+}, 3000);
+setTimeout(() => {
+    console.log('.')
+}, 4000);
+
+setTimeout(() => {
+    console.log('Data Request Complete')
+}, 5000);
+setTimeout(() => {
+    console.log('The server is now listening on por 3000')
+}, 5500);
 
 
-setInterval(function() {
-    db.get('SELECT * FROM milk WHERE date order by date desc limit 1', function(err, row) {
-        if (err) {
-            console.log('Oh no!' + err.message)
-            return
-        }
-        tempstats.lastAmountRight = row.right
-    })
-}, 6000)
-
-setInterval(function() {
-    db.get('SELECT * FROM feed WHERE date order by date desc limit 1', function(err, row) {
-        if (err) {
-            console.log('Oh no!' + err.message)
-            return
-        }
-        tempstats.feedChild = row.minutes
-    })
-}, 6000)
-
-// Get the last row to use for Graph data
-setInterval(function() {
-    db.each('SELECT * FROM (SELECT * FROM (SELECT * FROM milk WHERE dateonly = DATE("now", "-10 hours", "localtime"))AS date ORDER BY date DESC LIMIT 1) AS date ORDER BY date LIMIT 1', function(err, row) {
-            if (err) {
-                console.log('Oh no!' + err.message)
-                return
-            }
-            tempstats.last1 = row
-        },
-        function(err, rows) {
-            if (rows == 0) {
-                tempstats.last1 = { id: 0, left: 0, right: 0, date: 0, dateonly: 0 }
-            }
-        })
-}, 6000)
-
-// Get the second last row to use for Graph data
-setInterval(function() {
-    db.each('SELECT * FROM (SELECT * FROM (SELECT * FROM milk WHERE dateonly = DATE("now", "-10 hours", "localtime"))AS date ORDER BY date DESC LIMIT 2) AS date ORDER BY date LIMIT 1', function(err, row) {
-            if (err) {
-                console.log('Oh no!' + err.message)
-                return
-            }
-            tempstats.last2 = row
-        },
-        function(err, rows) {
-            if (rows == 0) {
-                tempstats.last2 = { id: 0, left: 0, right: 0, date: 0, dateonly: 0 }
-            }
-        })
-}, 6000)
-
-// Get third last row to use for Graph data
-setInterval(function() {
-    db.each('SELECT * FROM (SELECT * FROM (SELECT * FROM milk WHERE dateonly = DATE("now", "-10 hours", "localtime"))AS date ORDER BY date DESC LIMIT 3) AS date ORDER BY date LIMIT 1', function(err, row) {
-            if (err) {
-                console.log('Oh no!' + err.message)
-                return
-            }
-            tempstats.last3 = row
-        },
-        function(err, rows) {
-            if (rows == 0) {
-                tempstats.last3 = { id: 0, left: 0, right: 0, date: 0, dateonly: 0 }
-            }
-        })
-}, 6000)
-
-// Get fourth last row to use for Graph data
-setInterval(function() {
-    db.each('SELECT * FROM (SELECT * FROM (SELECT * FROM milk WHERE dateonly = DATE("now", "-10 hours", "localtime"))AS date ORDER BY date DESC LIMIT 4) AS date ORDER BY date LIMIT 1', function(err, row) {
-            if (err) {
-                console.log('Oh no!' + err.message)
-                return
-            }
-            tempstats.last4 = row
-        },
-        function(err, rows) {
-            if (rows == 0) {
-                tempstats.last4 = { id: 0, left: 2, right: 0, date: 0, dateonly: 0 }
-            }
-        })
-}, 6000)
-
-// Get fifth last row to use for Graph data
-setInterval(function() {
-    db.each('SELECT * FROM (SELECT * FROM (SELECT * FROM milk WHERE dateonly = DATE("now", "-10 hours", "localtime"))AS date ORDER BY date DESC LIMIT 5) AS date ORDER BY date LIMIT 1',
-        function(err, row) {
-            if (err) {
-                console.log('Oh no!' + err.message)
-                return
-            }
-            tempstats.last5 = { id: 0, left: 0, right: 0, date: 0, dateonly: 0 }
-        },
-        function(err, rows) {
-            if (rows == 0) {
-                tempstats.last5 = { id: 0, left: 0, right: 0, date: 0, dateonly: 0 }
-            }
-        })
-}, 6000)
-
-// Get the last row to use for Yesterday Graph data
-setInterval(function() {
-    db.each('SELECT * FROM (SELECT * FROM (SELECT * FROM milk WHERE dateonly = DATE("now", "-1 day", "-10 hours", "localtime"))AS date ORDER BY date DESC LIMIT 1) AS date ORDER BY date LIMIT 1', function(err, row) {
-            if (err) {
-                console.log('Oh no!' + err.message)
-                return
-            }
-            tempstats.last1y = row
-        },
-        function(err, rows) {
-            if (rows == 0) {
-                tempstats.last1y = { id: 0, left: 0, right: 0, date: 0, dateonly: 0 }
-            }
-        })
-}, 6000)
-
-// Get the second last row to use for Yesterday Graph data
-setInterval(function() {
-    db.each('SELECT * FROM (SELECT * FROM (SELECT * FROM milk WHERE dateonly = DATE("now", "-1 day", "-10 hours", "localtime"))AS date ORDER BY date DESC LIMIT 2) AS date ORDER BY date LIMIT 1', function(err, row) {
-            if (err) {
-                console.log('Oh no!' + err.message)
-                return
-            }
-            tempstats.last2y = row
-        },
-        function(err, rows) {
-            if (rows == 0) {
-                tempstats.last2y = { id: 0, left: 0, right: 0, date: 0, dateonly: 0 }
-            }
-        })
-}, 6000)
-
-// Get third last row to use for Yesterday Graph data
-setInterval(function() {
-    db.each('SELECT * FROM (SELECT * FROM (SELECT * FROM milk WHERE dateonly = DATE("now", "-1 day", "-10 hours", "localtime"))AS date ORDER BY date DESC LIMIT 3) AS date ORDER BY date LIMIT 1', function(err, row) {
-            if (err) {
-                console.log('Oh no!' + err.message)
-                return
-            }
-            tempstats.last3y = row
-        },
-        function(err, rows) {
-            if (rows == 0) {
-                tempstats.last3y = { id: 0, left: 0, right: 0, date: 0, dateonly: 0 }
-            }
-        })
-}, 6000)
-
-// Get fourth last row to use for Yesterday Graph data
-setInterval(function() {
-    db.each('SELECT * FROM (SELECT * FROM (SELECT * FROM milk WHERE dateonly = DATE("now", "-1 days", "-10 hours", "localtime"))AS date ORDER BY date DESC LIMIT 4) AS date ORDER BY date LIMIT 1', function(err, row) {
-            if (err) {
-                console.log('Oh no!' + err.message)
-                return
-            }
-            tempstats.last4y = row
-        },
-        function(err, rows) {
-            if (rows == 0) {
-                tempstats.last4y = { id: 0, left: 0, right: 0, date: 0, dateonly: 0 }
-            }
-        })
-}, 6000)
-
-// Get fifth last row to use for Yesterday Graph data
-setInterval(function() {
-    db.each('SELECT * FROM (SELECT * FROM (SELECT * FROM milk WHERE dateonly = DATE("now", "-1 days", "-10 hours", "localtime"))AS date ORDER BY date DESC LIMIT 5) AS date ORDER BY date LIMIT 1', function(err, row) {
-            if (err) {
-                console.log('Oh no!' + err.message)
-                return
-            }
-            tempstats.last5y = row
-        },
-        function(err, rows) {
-            if (rows == 0) {
-                tempstats.last5y = { id: 0, left: 0, right: 0, date: 0, dateonly: 0 }
-            }
-        })
-}, 6000)
-
-// Get fourth last row to use for Yesterday Graph data
-setInterval(function() {
-    db.each('SELECT COUNT(*) AS date FROM milk WHERE dateonly = DATE("now", "-10 hours")', function(err, row) {
-            if (err) {
-                console.log('Oh no!' + err.message)
-                return
-            }
-            tempstats.countLast = row.date
-        },
-        function(err, rows) {
-            if (rows == 0) {
-                tempstats.countLast = { date: 100 }
-            }
-        })
-}, 6000)
-
-// The blank date will show as 10:00AM
-
-module.exports = tempstats
+module.exports = dbStats

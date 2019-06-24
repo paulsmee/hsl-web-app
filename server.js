@@ -1,12 +1,22 @@
 'use strict'
 
 var express = require('express')
-var tempstats = require('./db.js')
-var dbstats = require('./db.js')
+var dbStats = require('./db.js')
 var path = require('path')
 var app = express()
+var dayjs = require('dayjs')
 var sqlite3 = require('sqlite3')
 var db = new sqlite3.Database('web-app.db')
+
+var stats = () => {
+
+    dbStats.getData()
+}
+
+setTimeout(() => {
+    stats()
+}, 2000);
+
 
 var publicPath = path.resolve(__dirname, "public")
 app.use(express.static(publicPath))
@@ -15,8 +25,9 @@ app.use(express.static(publicPath))
 app.use(express.urlencoded())
 
 // All general page links should be listed below
-app.get("/", function(request, response) {
-    response.sendFile("/index.html", {})
+app.get("/", function(req, res) {
+    // response.sendFile("/index.html", {})
+    res.send(dbStats.getData())
 })
 
 app.get("/history", function(request, response) {
@@ -43,132 +54,79 @@ app.post('/', function(request, response) {
     })
 })
 
-// app.get('/', function(req, res) {
-//     console.log("I'm running")
-//     res.send(tempstats.getLastAmount())
-// })
-
 // SQL data interaction functions from db.js .
 app.get('/left', function(req, res) {
-    res.send(tempstats.lastValues.left + '')
-    console.log(tempstats.lastValues)
-
+    res.send(dbStats.lastValues.left + '')
+    console.log(dbStats.lastValues)
 })
+
 app.get('/right', function(req, res) {
-    res.send(tempstats.lastAmountRight + '')
+    res.send(dbStats.lastValues.right + '')
 })
 app.get('/feed', function(req, res) {
-    res.send(tempstats.feedChild + '')
+    res.send(dbStats.feedChild + '')
 })
 app.get('/remaining', function(req, res) {
-        if ((5 - tempstats.countLast) <= 0) {
-            res.send('true')
-            console.log('Limit Reached with ' + (5 - tempstats.countLast))
-        } else {
-            res.send('false')
-            console.log('you have ' + (5 - tempstats.countLast) + ' times left to express' + tempstats.countLast)
-        }
-    })
-    // app.get('/remain', function(req, res) {
-    //     if ((5 - tempstats.countLast) <= 0) {
-    //         res.send((5 - tempstats.countLast) + '')
-    //         console.log('Limit Reached ' + (5 - tempstats.countLast))
-    //     } else {
-    //         res.send((5 - tempstats.countLast) + '')
-    //         console.log('Remainig ' + (5 - tempstats.countLast))
-    //     }
-    // })
+    if ((5 - dbStats.countLast) <= 0) {
+        res.send('true')
+        console.log('Limit Reached with ' + (5 - dbStats.countLast))
+    } else {
+        res.send('false')
+        console.log('you have ' + (5 - dbStats.countLast) + ' times left to express' + dbStats.countLast)
+    }
+})
 
 // Vaules for most recent volume
 app.get('/l1', function(req, res) {
-    var value = parseInt(tempstats.last1.left) + parseInt(tempstats.last1.right)
+    var value = parseInt(dbStats.last1.left) + parseInt(dbStats.last1.right)
     res.send(value + '')
 })
 app.get('/l2', function(req, res) {
-    var value = parseInt(tempstats.last2.left) + parseInt(tempstats.last2.right)
+    var value = parseInt(dbStats.last2.left) + parseInt(dbStats.last2.right)
     res.send(value + '')
 })
 app.get('/l3', function(req, res) {
-    var value = parseInt(tempstats.last3.left) + parseInt(tempstats.last3.right)
+    var value = parseInt(dbStats.last3.left) + parseInt(dbStats.last3.right)
     res.send(value + '')
 })
 app.get('/l4', function(req, res) {
-    var value = parseInt(tempstats.last4.left) + parseInt(tempstats.last4.right)
+    var value = parseInt(dbStats.last4.left) + parseInt(dbStats.last4.right)
     res.send(value + '')
 })
 app.get('/l5', function(req, res) {
-    var value = parseInt(tempstats.last5.left) + parseInt(tempstats.last5.right)
+    var value = parseInt(dbStats.last5.left) + parseInt(dbStats.last5.right)
     res.send(value + '')
 })
 
 // Values for Last time
 app.get('/l1t', function(req, res) {
-    var value = new Date(tempstats.last1.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
+    var d = dayjs(dbStats.last1.date).add(10, 'hour')
+    var value = new Date(d).toLocaleTimeString('en-AU', { hour: '2-digit', minute: '2-digit', hour12: true })
     res.send(value + '')
 })
 app.get('/l2t', function(req, res) {
-    var value = new Date(tempstats.last2.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
+    var d = dayjs(dbStats.last2.date).add(10, 'hour')
+    var value = new Date(d).toLocaleTimeString('en-AU', { hour: '2-digit', minute: '2-digit', hour12: true })
     res.send(value + '')
 })
 app.get('/l3t', function(req, res) {
-    var value = new Date(tempstats.last3.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
+    var d = dayjs(dbStats.last3.date).add(10, 'hour')
+    var value = new Date(d).toLocaleTimeString('en-AU', { hour: '2-digit', minute: '2-digit', hour12: true })
     res.send(value + '')
 })
 app.get('/l4t', function(req, res) {
-    var value = new Date(tempstats.last4.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
+    var d = dayjs(dbStats.last4.date).add(10, 'hour')
+    var value = new Date(d).toLocaleTimeString('en-AU', { hour: '2-digit', minute: '2-digit', hour12: true })
     res.send(value + '')
 })
 app.get('/l5t', function(req, res) {
-    var value = new Date(tempstats.last5.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
+    var d = dayjs(dbStats.last5.date).add(10, 'hour')
+        // console.log(value)
+    var value = new Date(d).toLocaleTimeString('en-AU', { hour: '2-digit', minute: '2-digit', hour12: true })
     res.send(value + '')
-})
-
-// Values for Yesterday volume
-app.get('/l1y', function(req, res) {
-    var value = parseInt(tempstats.last1y.left) + parseInt(tempstats.last1y.right)
-    res.send(value + '')
-})
-app.get('/l2y', function(req, res) {
-    var value = parseInt(tempstats.last2y.left) + parseInt(tempstats.last2y.right)
-    res.send(value + '')
-})
-app.get('/l3y', function(req, res) {
-    var value = parseInt(tempstats.last3y.left) + parseInt(tempstats.last3y.right)
-    res.send(value + '')
-})
-app.get('/l4y', function(req, res) {
-    var value = parseInt(tempstats.last4y.left) + parseInt(tempstats.last4y.right)
-    res.send(value + '')
-})
-app.get('/l5y', function(req, res) {
-    var value = parseInt(tempstats.last5y.left) + parseInt(tempstats.last5y.right)
-    res.send(value + '')
-})
-
-// Values for Yesterday time
-app.get('/l1yt', function(req, res) {
-    var value = new Date(tempstats.last1y.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
-    res.send(value + '')
-})
-app.get('/l2yt', function(req, res) {
-    var value = new Date(tempstats.last2y.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
-    res.send(value + '')
-})
-app.get('/l3yt', function(req, res) {
-    var value = new Date(tempstats.last3y.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
-    res.send(value + '')
-})
-app.get('/l4yt', function(req, res) {
-    var value = new Date(tempstats.last4y.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
-    res.send(value + '')
-})
-app.get('/l5yt', function(req, res) {
-    var value = new Date(tempstats.last5y.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })
-    res.send(value + '')
+        // console.log()
 })
 
 // Server listen code
 var port = 3000
-app.listen(port, function() {
-    console.log('The server is listening on port ' + port)
-})
+app.listen(port, function() {})
